@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каспийск Role Play | Законодательство</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #121212;
+            --primary-medium: #1e1e1e;
+            --primary-light: #2d2d2d;
+            --secondary-dark: #3a3a3a;
+            --secondary-medium: #4a4a4a;
+            --secondary-light: #5a5a5a;
+            --accent-color: #7a7a7a;
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --highlight: #404040;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-medium) 0%, var(--secondary-dark) 100%);
+            padding: 2.5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.03)"/></svg>');
+            background-size: cover;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s ease;
+            background: linear-gradient(to right, #f0f0f0, #b0b0b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease 0.3s both;
+            color: var(--text-secondary);
+        }
+
+        /* Navigation Styles */
+        .categories {
+            display: flex;
+            justify-content: center;
+            margin: 2.5rem 0;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-dark) 100%);
+            border: none;
+            color: var(--text-primary);
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary-medium) 0%, var(--accent-color) 100%);
+            transition: var(--transition);
+            z-index: -1;
+            border-radius: 50px;
+        }
+
+        .category-btn:hover {
+            color: var(--text-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-btn:hover::before {
+            left: 0;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--secondary-medium) 0%, var(--accent-color) 100%);
+            box-shadow: 0 4px 15px rgba(122, 122, 122, 0.3);
+        }
+
+        /* Search Styles */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 2.5rem 0;
+        }
+
+        .search-box {
+            display: flex;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 16px 24px;
+            border: none;
+            background: var(--primary-light);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-input:focus {
+            background: var(--secondary-dark);
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, var(--secondary-medium) 0%, var(--accent-color) 100%);
+            color: var(--text-primary);
+            border: none;
+            padding: 0 28px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .search-btn:hover {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-light) 100%);
+        }
+
+        /* Articles Section */
+        .articles-section {
+            padding: 3rem 0;
+            min-height: 70vh;
+        }
+
+        .category-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(to right, var(--secondary-medium), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .articles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-dark) 100%);
+            border-radius: 12px;
+            padding: 1.8rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--secondary-medium);
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary-medium), var(--accent-color));
+            transition: var(--transition);
+            border-radius: 6px 0 0 6px;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .article-card:hover::before {
+            width: 100%;
+            opacity: 0.08;
+        }
+
+        .article-number {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .article-number::before {
+            content: '§';
+            margin-right: 8px;
+            color: var(--accent-color);
+            font-size: 1.8rem;
+        }
+
+        .article-description {
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .article-penalty {
+            font-weight: bold;
+            color: var(--accent-color);
+            border-top: 1px dashed var(--secondary-medium);
+            padding-top: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .article-penalty::before {
+            content: '⚖️';
+            margin-right: 8px;
+        }
+
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 3rem;
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            background: var(--primary-light);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-dark) 100%);
+            color: var(--text-secondary);
+            padding: 2.5rem 0;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 1px solid var(--secondary-dark);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #f0f0f0, #b0b0b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.03);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .articles-container {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .categories {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .category-btn {
+                width: 80%;
+            }
+            
+            .articles-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+            
+            .search-input {
+                border-radius: 12px 12px 0 0;
+            }
+            
+            .search-btn {
+                border-radius: 0 0 12px 12px;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .category-title {
+                font-size: 2rem;
+            }
+            
+            .article-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Каспийск Role Play</h1>
+                <p class="subtitle">Официальное законодательство для игроков</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="categories">
+            <button class="category-btn active" data-category="uk">
+                <i class="fas fa-gavel"></i> Уголовный Кодекс РФ
+            </button>
+            <button class="category-btn" data-category="koap">
+                <i class="fas fa-file-alt"></i> Кодекс об Административных Правонарушениях РФ
+            </button>
+        </div>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" id="search-input" placeholder="Поиск по статьям, описанию или наказанию...">
+                <button class="search-btn" id="search-btn">
+                    <i class="fas fa-search"></i> Найти
+                </button>
+            </div>
+        </div>
+
+        <section class="articles-section">
+            <h2 class="category-title" id="category-title">Уголовный Кодекс РФ</h2>
+            <div class="articles-container" id="articles-container">
+                <!-- Articles will be dynamically inserted here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">КАСПИЙСК RP</div>
+                <p>Официальный ресурс законодательства для ролевой игры в Roblox</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link"><i class="fas fa-home"></i> Главная</a>
+                    <a href="#" class="footer-link"><i class="fas fa-book"></i> Документация</a>
+                    <a href="#" class="footer-link"><i class="fas fa-users"></i> Сообщество</a>
+                </div>
+                <p>© Каспийск Role Play. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data for articles - Уголовный Кодекс РФ (200 статей)
+        const ukArticles = [
+            // Преступления против личности (1-50)
+            { number: 1, description: "Умышленное причинение легкого вреда", penalty: "Штраф 15,000₽ или 45 мин" },
+            { number: 2, description: "Умышленное причинение среднего вреда", penalty: "Штраф 35,000₽ или 90 мин" },
+            { number: 3, description: "Умышленное причинение тяжкого вреда", penalty: "Штраф 150,000₽ или 360 мин" },
+            { number: 4, description: "Побои", penalty: "Штраф 10,000₽ или 30 мин" },
+            { number: 5, description: "Истязание", penalty: "Штраф 50,000₽ или 120 мин" },
+            { number: 6, description: "Угроза убийством", penalty: "Штраф 25,000₽ или 60 мин" },
+            { number: 7, description: "Принуждение к действиям", penalty: "Штраф 30,000₽ или 75 мин" },
+            { number: 8, description: "Ограничение свободы", penalty: "Штраф 20,000₽ или 50 мин" },
+            { number: 9, description: "Похищение человека", penalty: "Штраф 200,000₽ или 480 мин" },
+            { number: 10, description: "Незаконное лишение свободы", penalty: "Штраф 60,000₽ или 150 мин" },
+            { number: 11, description: "Клевета", penalty: "Штраф 15,000₽ или 40 мин" },
+            { number: 12, description: "Оскорбление личности", penalty: "Штраф 8,000₽ или 20 мин" },
+            { number: 13, description: "Вторжение в частную жизнь", penalty: "Штраф 12,000₽ или 30 мин" },
+            { number: 14, description: "Нарушение тайны переписки", penalty: "Штраф 10,000₽ или 25 мин" },
+            { number: 15, description: "Незаконное собирание информации", penalty: "Штраф 18,000₽ или 45 мин" },
+            { number: 16, description: "Подделка личных документов", penalty: "Штраф 25,000₽ или 60 мин" },
+            { number: 17, description: "Использование подложных документов", penalty: "Штраф 20,000₽ или 50 мин" },
+            { number: 18, description: "Незаконное получение данных", penalty: "Штраф 22,000₽ или 55 мин" },
+            { number: 19, description: "Шантаж", penalty: "Штраф 40,000₽ или 100 мин" },
+            { number: 20, description: "Вымогательство", penalty: "Штраф 80,000₽ или 200 мин" },
+            { number: 21, description: "Запугивание свидетеля", penalty: "Штраф 60,000₽ или 150 мин" },
+            { number: 22, description: "Месть за показания", penalty: "Штраф 70,000₽ или 180 мин" },
+            { number: 23, description: "Воспрепятствование правосудию", penalty: "Штраф 45,000₽ или 110 мин" },
+            { number: 24, description: "Подкуп свидетеля", penalty: "Штраф 55,000₽ или 140 мин" },
+            { number: 25, description: "Дача ложных показаний", penalty: "Штраф 35,000₽ или 90 мин" },
+            { number: 26, description: "Незаконное проникновение в жилище", penalty: "Штраф 30,000₽ или 75 мин" },
+            { number: 27, description: "Нарушение неприкосновенности дома", penalty: "Штраф 25,000₽ или 60 мин" },
+            { number: 28, description: "Незаконное выселение", penalty: "Штраф 50,000₽ или 120 мин" },
+            { number: 29, description: "Самоуправство", penalty: "Штраф 15,000₽ или 40 мин" },
+            { number: 30, description: "Нарушение права на труд", penalty: "Штраф 40,000₽ или 100 мин" },
+            { number: 31, description: "Дискриминация", penalty: "Штраф 20,000₽ или 50 мин" },
+            { number: 32, description: "Нарушение избирательных прав", penalty: "Штраф 30,000₽ или 75 мин" },
+            { number: 33, description: "Воспрепятствование собраниям", penalty: "Штраф 25,000₽ или 60 мин" },
+            { number: 34, description: "Нарушение свободы совести", penalty: "Штраф 18,000₽ или 45 мин" },
+            { number: 35, description: "Принуждение к религии", penalty: "Штраф 22,000₽ или 55 мин" },
+            { number: 36, description: "Воспрепятствование образованию", penalty: "Штраф 35,000₽ или 90 мин" },
+            { number: 37, description: "Незаконное усыновление", penalty: "Штраф 60,000₽ или 150 мин" },
+            { number: 38, description: "Разглашение тайны усыновления", penalty: "Штраф 28,000₽ или 70 мин" },
+            { number: 39, description: "Незаконное помещение в психиатрическую больницу", penalty: "Штраф 90,000₽ или 220 мин" },
+            { number: 40, description: "Фальсификация доказательств", penalty: "Штраф 45,000₽ или 110 мин" },
+            { number: 41, description: "Заведомо ложный донос", penalty: "Штраф 38,000₽ или 95 мин" },
+            { number: 42, description: "Незаконное задержание", penalty: "Штраф 52,000₽ или 130 мин" },
+            { number: 43, description: "Принуждение к даче показаний", penalty: "Штраф 65,000₽ или 160 мин" },
+            { number: 44, description: "Незаконное обыски", penalty: "Штраф 32,000₽ или 80 мин" },
+            { number: 45, description: "Нарушение порядка связи", penalty: "Штраф 24,000₽ или 60 мин" },
+            { number: 46, description: "Воспрепятствование работе СМИ", penalty: "Штраф 42,000₽ или 105 мин" },
+            { number: 47, description: "Подделка удостоверений", penalty: "Штраф 28,000₽ или 70 мин" },
+            { number: 48, description: "Незаконное использование полномочий", penalty: "Штраф 58,000₽ или 145 мин" },
+            { number: 49, description: "Превышение должностных полномочий", penalty: "Штраф 48,000₽ или 120 мин" },
+            { number: 50, description: "Халатность", penalty: "Штраф 36,000₽ или 90 мин" },
+            
+            // Имущественные преступления (51-100)
+            { number: 51, description: "Кража до 10,000₽", penalty: "Штраф 20,000₽ или 50 мин" },
+            { number: 52, description: "Кража до 50,000₽", penalty: "Штраф 50,000₽ или 120 мин" },
+            { number: 53, description: "Кража свыше 50,000₽", penalty: "Штраф 100,000₽ или 240 мин" },
+            { number: 54, description: "Мошенничество до 25,000₽", penalty: "Штраф 30,000₽ или 75 мин" },
+            { number: 55, description: "Мошенничество до 100,000₽", penalty: "Штраф 75,000₽ или 180 мин" },
+            { number: 56, description: "Мошенничество свыше 100,000₽", penalty: "Штраф 150,000₽ или 360 мин" },
+            { number: 57, description: "Присвоение имущества", penalty: "Штраф 40,000₽ или 100 мин" },
+            { number: 58, description: "Растрата средств", penalty: "Штраф 60,000₽ или 150 мин" },
+            { number: 59, description: "Грабеж без насилия", penalty: "Штраф 45,000₽ или 110 мин" },
+            { number: 60, description: "Грабеж с насилием", penalty: "Штраф 90,000₽ или 220 мин" },
+            { number: 61, description: "Разбойное нападение", penalty: "Штраф 120,000₽ или 300 мин" },
+            { number: 62, description: "Вымогательство имущества", penalty: "Штраф 70,000₽ или 170 мин" },
+            { number: 63, description: "Незаконное обращение взыскания", penalty: "Штраф 35,000₽ или 85 мин" },
+            { number: 64, description: "Недобросовестное управление имуществом", penalty: "Штраф 55,000₽ или 135 мин" },
+            { number: 65, description: "Уничтожение чужого имущества", penalty: "Штраф 25,000₽ или 60 мин" },
+            { number: 66, description: "Повреждение имущества", penalty: "Штраф 20,000₽ или 50 мин" },
+            { number: 67, description: "Незаконное завладение недвижимостью", penalty: "Штраф 80,000₽ или 200 мин" },
+            { number: 68, description: "Подделка ценных бумаг", penalty: "Штраф 65,000₽ или 160 мин" },
+            { number: 69, description: "Изготовление фальшивых денег", penalty: "Штраф 200,000₽ или 480 мин" },
+            { number: 70, description: "Сбыт фальшивых денег", penalty: "Штраф 180,000₽ или 430 мин" },
+            { number: 71, description: "Незаконный оборот драгметаллов", penalty: "Штраф 95,000₽ или 230 мин" },
+            { number: 72, description: "Контрабанда товаров", penalty: "Штраф 110,000₽ или 270 мин" },
+            { number: 73, description: "Незаконный экспорт технологий", penalty: "Штраф 130,000₽ или 310 мин" },
+            { number: 74, description: "Нарушение авторских прав", penalty: "Штраф 50,000₽ или 120 мин" },
+            { number: 75, description: "Незаконное использование товарных знаков", penalty: "Штраф 45,000₽ или 110 мин" },
+            { number: 76, description: "Промышленный шпионаж", penalty: "Штраф 85,000₽ или 210 мин" },
+            { number: 77, description: "Незаконное получение кредита", penalty: "Штраф 70,000₽ или 170 мин" },
+            { number: 78, description: "Злостное уклонение от долгов", penalty: "Штраф 40,000₽ или 100 мин" },
+            { number: 79, description: "Фиктивное банкротство", penalty: "Штраф 90,000₽ или 220 мин" },
+            { number: 80, description: "Незаконные сделки с имуществом", penalty: "Штраф 60,000₽ или 150 мин" },
+            { number: 81, description: "Отмывание денег", penalty: "Штраф 160,000₽ или 380 мин" },
+            { number: 82, description: "Незаконная банковская деятельность", penalty: "Штраф 140,000₽ или 340 мин" },
+            { number: 83, description: "Нарушение правил ведения бизнеса", penalty: "Штраф 55,000₽ или 135 мин" },
+            { number: 84, description: "Незаконное предпринимательство", penalty: "Штраф 75,000₽ или 180 мин" },
+            { number: 85, description: "Уклонение от налогов", penalty: "Штраф 100,000₽ или 240 мин" },
+            { number: 86, description: "Незаконное использование бюджетных средств", penalty: "Штраф 120,000₽ или 290 мин" },
+            { number: 87, description: "Злоупотребление при эмиссии ценных бумаг", penalty: "Штраф 95,000₽ или 230 мин" },
+            { number: 88, description: "Манипулирование рынком", penalty: "Штраф 110,000₽ или 270 мин" },
+            { number: 89, description: "Недобросовестная конкуренция", penalty: "Штраф 65,000₽ или 160 мин" },
+            { number: 90, description: "Ограничение конкуренции", penalty: "Штраф 85,000₽ или 210 мин" },
+            { number: 91, description: "Незаконное получение государственных средств", penalty: "Штраф 130,000₽ или 310 мин" },
+            { number: 92, description: "Нарушение антимонопольного законодательства", penalty: "Штраф 70,000₽ или 170 мин" },
+            { number: 93, description: "Незаконная приватизация", penalty: "Штраф 150,000₽ или 360 мин" },
+            { number: 94, description: "Незаконная предпринимательская деятельность", penalty: "Штраф 80,000₽ или 200 мин" },
+            { number: 95, description: "Нарушение правил торговли", penalty: "Штраф 45,000₽ или 110 мин" },
+            { number: 96, description: "Обман потребителей", penalty: "Штраф 35,000₽ или 85 мин" },
+            { number: 97, description: "Незаконная реклама", penalty: "Штраф 25,000₽ или 60 мин" },
+            { number: 98, description: "Нарушение правил реализации товаров", penalty: "Штраф 30,000₽ или 75 мин" },
+            { number: 99, description: "Незаконная продажа алкоголя", penalty: "Штраф 55,000₽ или 135 мин" },
+            { number: 100, description: "Незаконная продажа табачных изделий", penalty: "Штраф 40,000₽ или 100 мин" },
+            
+            // Преступления против общественной безопасности (101-150)
+            { number: 101, description: "Хулиганство", penalty: "Штраф 15,000₽ или 40 мин" },
+            { number: 102, description: "Вандализм", penalty: "Штраф 20,000₽ или 50 мин" },
+            { number: 103, description: "Нарушение общественного порядка", penalty: "Штраф 10,000₽ или 25 мин" },
+            { number: 104, description: "Организация массовых беспорядков", penalty: "Штраф 100,000₽ или 240 мин" },
+            { number: 105, description: "Призывы к насилию", penalty: "Штраф 45,000₽ или 110 мин" },
+            { number: 106, description: "Экстремистская деятельность", penalty: "Штраф 120,000₽ или 290 мин" },
+            { number: 107, description: "Разжигание розни", penalty: "Штраф 60,000₽ или 150 мин" },
+            { number: 108, description: "Незаконное ношение оружия", penalty: "Штраф 35,000₽ или 85 мин" },
+            { number: 109, description: "Незаконный оборот оружия", penalty: "Штраф 80,000₽ или 200 мин" },
+            { number: 110, description: "Хранение взрывчатых веществ", penalty: "Штраф 70,000₽ или 170 мин" },
+            { number: 111, description: "Незаконное изготовление оружия", penalty: "Штраф 90,000₽ или 220 мин" },
+            { number: 112, description: "Незаконная торговля оружием", penalty: "Штраф 110,000₽ или 270 мин" },
+            { number: 113, description: "Пиратство", penalty: "Штраф 130,000₽ или 310 мин" },
+            { number: 114, description: "Захват заложников", penalty: "Штраф 200,000₽ или 480 мин" },
+            { number: 115, description: "Угон транспортного средства", penalty: "Штраф 50,000₽ или 120 мин" },
+            { number: 116, description: "Нарушение правил безопасности движения", penalty: "Штраф 30,000₽ или 75 мин" },
+            { number: 117, description: "Нарушение правил эксплуатации транспорта", penalty: "Штраф 40,000₽ или 100 мин" },
+            { number: 118, description: "Незаконное проникновение на объекты", penalty: "Штраф 25,000₽ или 60 мин" },
+            { number: 119, description: "Нарушение правил охраны объектов", penalty: "Штраф 35,000₽ или 85 мин" },
+            { number: 120, description: "Незаконное пересечение границы", penalty: "Штраф 45,000₽ или 110 мин" },
+            { number: 121, description: "Организация незаконной миграции", penalty: "Штраф 85,000₽ или 210 мин" },
+            { number: 122, description: "Незаконная выдача виз", penalty: "Штраф 65,000₽ или 160 мин" },
+            { number: 123, description: "Контрабанда мигрантов", penalty: "Штраф 95,000₽ или 230 мин" },
+            { number: 124, description: "Незаконное трудоустройство иностранцев", penalty: "Штраф 55,000₽ или 135 мин" },
+            { number: 125, description: "Нарушение паспортного режима", penalty: "Штраф 20,000₽ или 50 мин" },
+            { number: 126, description: "Подделка миграционных документов", penalty: "Штраф 40,000₽ или 100 мин" },
+            { number: 127, description: "Незаконное пребывание на территории", penalty: "Штраф 30,000₽ или 75 мин" },
+            { number: 128, description: "Нарушение правил регистрации", penalty: "Штраф 15,000₽ или 40 мин" },
+            { number: 129, description: "Организация притонов", penalty: "Штраф 60,000₽ или 150 мин" },
+            { number: 130, description: "Содержание притонов", penalty: "Штраф 50,000₽ или 120 мин" },
+            { number: 131, description: "Незаконная игорная деятельность", penalty: "Штраф 70,000₽ или 170 мин" },
+            { number: 132, description: "Организация азартных игр", penalty: "Штраф 80,000₽ или 200 мин" },
+            { number: 133, description: "Ростовщичество", penalty: "Штраф 45,000₽ или 110 мин" },
+            { number: 134, description: "Незаконное кредитование", penalty: "Штраф 65,000₽ или 160 мин" },
+            { number: 135, description: "Финансовая пирамида", penalty: "Штраф 100,000₽ или 240 мин" },
+            { number: 136, description: "Мошенничество в сфере кредитования", penalty: "Штраф 85,000₽ или 210 мин" },
+            { number: 137, description: "Незаконное страхование", penalty: "Штраф 75,000₽ или 180 мин" },
+            { number: 138, description: "Нарушение правил страхования", penalty: "Штраф 55,000₽ или 135 мин" },
+            { number: 139, description: "Незаконная лотерейная деятельность", penalty: "Штраф 60,000₽ или 150 мин" },
+            { number: 140, description: "Нарушение правил проведения лотерей", penalty: "Штраф 40,000₽ или 100 мин" },
+            { number: 141, description: "Незаконная рекламная деятельность", penalty: "Штраф 35,000₽ или 85 мин" },
+            { number: 142, description: "Недобросовестная реклама", penalty: "Штраф 25,000₽ или 60 мин" },
+            { number: 143, description: "Нарушение правим распространения информации", penalty: "Штраф 30,000₽ или 75 мин" },
+            { number: 144, description: "Незаконное распространение информации", penalty: "Штраф 50,000₽ или 120 мин" },
+            { number: 145, description: "Нарушение тайны связи", penalty: "Штраф 45,000₽ или 110 мин" },
+            { number: 146, description: "Незаконный доступ к информации", penalty: "Штраф 55,000₽ или 135 мин" },
+            { number: 147, description: "Создание вредоносных программ", penalty: "Штраф 70,000₽ или 170 мин" },
+            { number: 148, description: "Распространение вредоносных программ", penalty: "Штраф 65,000₽ или 160 мин" },
+            { number: 149, description: "Компьютерный саботаж", penalty: "Штраф 90,000₽ или 220 мин" },
+            { number: 150, description: "Несанкционированный доступ к данным", penalty: "Штраф 60,000₽ или 150 мин" },
+            
+            // Преступления против государственной власти (151-200)
+            { number: 151, description: "Государственная измена", penalty: "Штраф 500,000₽ или 1000 мин" },
+            { number: 152, description: "Шпионаж", penalty: "Штраф 400,000₽ или 800 мин" },
+            { number: 153, description: "Посягательство на государственного деятеля", penalty: "Штраф 300,000₽ или 600 мин" },
+            { number: 154, description: "Насильственный захват власти", penalty: "Штраф 350,000₽ или 700 мин" },
+            { number: 155, description: "Диверсия", penalty: "Штраф 280,000₽ или 560 мин" },
+            { number: 156, description: "Публичные призывы к изменению строя", penalty: "Штраф 120,000₽ или 290 мин" },
+            { number: 157, description: "Возбуждение ненависти к власти", penalty: "Штраф 100,000₽ или 240 мин" },
+            { number: 158, description: "Неуважение к государственным символам", penalty: "Штраф 40,000₽ или 100 мин" },
+            { number: 159, description: "Нарушение порядка управления", penalty: "Штраф 50,000₽ или 120 мин" },
+            { number: 160, description: "Сопротивление представителю власти", penalty: "Штраф 60,000₽ или 150 мин" },
+            { number: 161, description: "Неисполнение решения суда", penalty: "Штраф 45,000₽ или 110 мин" },
+            { number: 162, description: "Побег из-под стражи", penalty: "Штраф 80,000₽ или 200 мин" },
+            { number: 163, description: "Укрывательство преступников", penalty: "Штраф 55,000₽ или 135 мин" },
+            { number: 164, description: "Незаконное освобождение от ответственности", penalty: "Штраф 70,000₽ или 170 мин" },
+            { number: 165, description: "Фальсификация доказательств", penalty: "Штраф 65,000₽ или 160 мин" },
+            { number: 166, description: "Заведомо ложное заключение", penalty: "Штраф 75,000₽ или 180 мин" },
+            { number: 167, description: "Незаконное задержание", penalty: "Штраф 85,000₽ или 210 мин" },
+            { number: 168, description: "Принуждение к даче показаний", penalty: "Штраф 95,000₽ или 230 мин" },
+            { number: 169, description: "Незаконное освобождение", penalty: "Штраф 110,000₽ или 270 мин" },
+            { number: 170, description: "Побег из мест заключения", penalty: "Штраф 90,000₽ или 220 мин" },
+            { number: 171, description: "Организация преступного сообщества", penalty: "Штраф 200,000₽ или 480 мин" },
+            { number: 172, description: "Участие в преступном сообществе", penalty: "Штраф 150,000₽ или 360 мин" },
+            { number: 173, description: "Бандитизм", penalty: "Штраф 180,000₽ или 430 мин" },
+            { number: 174, description: "Организация незаконных вооруженных формирований", penalty: "Штраф 220,000₽ или 530 мин" },
+            { number: 175, description: "Участие в незаконных вооруженных формированиях", penalty: "Штраф 160,000₽ или 380 мин" },
+            { number: 176, description: "Контрабанда оружия", penalty: "Штраф 140,000₽ или 340 мин" },
+            { number: 177, description: "Незаконный экспорт технологий", penalty: "Штраф 130,000₽ или 310 мин" },
+            { number: 178, description: "Нарушение правил нераспространения оружия", penalty: "Штраф 120,000₽ или 290 мин" },
+            { number: 179, description: "Международный терроризм", penalty: "Штраф 400,000₽ или 800 мин" },
+            { number: 180, description: "Финансирование терроризма", penalty: "Штраф 350,000₽ или 700 мин" },
+            { number: 181, description: "Вербовка в террористические организации", penalty: "Штраф 300,000₽ или 600 мин" },
+            { number: 182, description: "Прохождение обучения в террористических целях", penalty: "Штраф 280,000₽ или 560 мин" },
+            { number: 183, description: "Организация террористического акта", penalty: "Штраф 500,000₽ или 1000 мин" },
+            { number: 184, description: "Участие в террористическом акте", penalty: "Штраф 450,000₽ или 900 мин" },
+            { number: 185, description: "Несообщение о преступлении", penalty: "Штраф 30,000₽ или 75 мин" },
+            { number: 186, description: "Укрывательство преступления", penalty: "Штраф 40,000₽ или 100 мин" },
+            { number: 187, description: "Недонесение о преступлении", penalty: "Штраф 25,000₽ или 60 мин" },
+            { number: 188, description: "Пособничество преступлению", penalty: "Штраф 50,000₽ или 120 мин" },
+            { number: 189, description: "Организация преступления", penalty: "Штраф 80,000₽ или 200 мин" },
+            { number: 190, description: "Подстрекательство к преступлению", penalty: "Штраф 60,000₽ или 150 мин" },
+            { number: 191, description: "Покушение на преступление", penalty: "Штраф 70,000₽ или 170 мин" },
+            { number: 192, description: "Соучастие в преступлении", penalty: "Штраф 55,000₽ или 135 мин" },
+            { number: 193, description: "Незаконное производство", penalty: "Штраф 90,000₽ или 220 мин" },
+            { number: 194, description: "Незаконная торговля", penalty: "Штраф 75,000₽ или 180 мин" },
+            { number: 195, description: "Контрабанда", penalty: "Штраф 100,000₽ или 240 мин" },
+            { number: 196, description: "Незаконный ввоз товаров", penalty: "Штраф 85,000₽ или 210 мин" },
+            { number: 197, description: "Незаконный вывоз товаров", penalty: "Штраф 95,000₽ или 230 мин" },
+            { number: 198, description: "Нарушение таможенных правил", penalty: "Штраф 65,000₽ или 160 мин" },
+            { number: 199, description: "Незаконное перемещение через границу", penalty: "Штраф 80,000₽ или 200 мин" },
+            { number: 200, description: "Уклонение от таможенных платежей", penalty: "Штраф 110,000₽ или 270 мин" }
+        ];
+
+        // Data for articles - КоАП РФ (200 статей)
+        const koapArticles = [
+            // Нарушения общественного порядка (1-50)
+            { number: 1, description: "Мелкое хулиганство", penalty: "Штраф 5,000₽" },
+            { number: 2, description: "Нарушение тишины в ночное время", penalty: "Штраф 3,000₽" },
+            { number: 3, description: "Распитие алкоголя в общественных местах", penalty: "Штраф 4,000₽" },
+            { number: 4, description: "Появление в общественных местах в нетрезвом виде", penalty: "Штраф 5,000₽" },
+            { number: 5, description: "Курение в запрещенных местах", penalty: "Штраф 2,000₽" },
+            { number: 6, description: "Нецензурная брань в общественном месте", penalty: "Штраф 3,000₽" },
+            { number: 7, description: "Незаконная расклейка объявлений", penalty: "Штраф 4,000₽" },
+            { number: 8, description: "Нарушение правил проведения публичных мероприятий", penalty: "Штраф 8,000₽" },
+            { number: 9, description: "Создание помех общественному транспорту", penalty: "Штраф 6,000₽" },
+            { number: 10, description: "Незаконная уличная торговля", penalty: "Штраф 7,000₽" },
+            { number: 11, description: "Нарушение правил благоустройства", penalty: "Штраф 3,000₽" },
+            { number: 12, description: "Загрязнение общественных мест", penalty: "Штраф 4,000₽" },
+            { number: 13, description: "Несоблюдение чистоты на улицах", penalty: "Штраф 2,500₽" },
+            { number: 14, description: "Выгул собак в запрещенных местах", penalty: "Штраф 3,500₽" },
+            { number: 15, description: "Нарушение правил содержания животных", penalty: "Штраф 4,500₽" },
+            { number: 16, description: "Неубранные экскременты животных", penalty: "Штраф 2,000₽" },
+            { number: 17, description: "Нарушение правил торговли в неустановленных местах", penalty: "Штраф 6,000₽" },
+            { number: 18, description: "Незаконная установка киосков", penalty: "Штраф 8,000₽" },
+            { number: 19, description: "Нарушение правил размещения рекламы", penalty: "Штраф 5,000₽" },
+            { number: 20, description: "Незаконная раздача листовок", penalty: "Штраф 3,000₽" },
+            { number: 21, description: "Нарушение правил проведения митингов", penalty: "Штраф 10,000₽" },
+            { number: 22, description: "Несанкционированный пикет", penalty: "Штраф 7,000₽" },
+            { number: 23, description: "Нарушение правил шествий", penalty: "Штраф 9,000₽" },
+            { number: 24, description: "Создание препятствий движению", penalty: "Штраф 6,500₽" },
+            { number: 25, description: "Нарушение правил использования звукоусилителей", penalty: "Штраф 4,000₽" },
+            { number: 26, description: "Незаконное использование пиротехники", penalty: "Штраф 5,500₽" },
+            { number: 27, description: "Нарушение правил пожарной безопасности", penalty: "Штраф 7,500₽" },
+            { number: 28, description: "Курение в пожароопасных местах", penalty: "Штраф 3,500₽" },
+            { number: 29, description: "Незаконное разведение костров", penalty: "Штраф 4,500₽" },
+            { number: 30, description: "Нарушение правил использования открытого огня", penalty: "Штраф 6,000₽" },
+            { number: 31, description: "Несоблюдение противопожарных норм", penalty: "Штраф 8,000₽" },
+            { number: 32, description: "Блокирование пожарных выходов", penalty: "Штраф 9,000₽" },
+            { number: 33, description: "Нарушение правил эвакуации", penalty: "Штраф 7,000₽" },
+            { number: 34, description: "Неисполнение предписаний пожарных", penalty: "Штраф 10,000₽" },
+            { number: 35, description: "Нарушение правил хранения легковоспламеняющихся материалов", penalty: "Штраф 8,500₽" },
+            { number: 36, description: "Незаконная продажа пиротехники", penalty: "Штраф 12,000₽" },
+            { number: 37, description: "Нарушение правил использования газового оборудования", penalty: "Штраф 9,500₽" },
+            { number: 38, description: "Несоблюдение норм электробезопасности", penalty: "Штраф 7,500₽" },
+            { number: 39, description: "Нарушение правил эксплуатации электрооборудования", penalty: "Штраф 8,000₽" },
+            { number: 40, description: "Незаконное подключение к электросетям", penalty: "Штраф 15,000₽" },
+            { number: 41, description: "Самовольное подключение к коммуникациям", penalty: "Штраф 12,000₽" },
+            { number: 42, description: "Нарушение правил пользования водопроводом", penalty: "Штраф 6,000₽" },
+            { number: 43, description: "Незаконное использование водных ресурсов", penalty: "Штраф 8,000₽" },
+            { number: 44, description: "Нарушение правил водоотведения", penalty: "Штраф 7,000₽" },
+            { number: 45, description: "Загрязнение водных объектов", penalty: "Штраф 20,000₽" },
+            { number: 46, description: "Несоблюдение правил охраны водных ресурсов", penalty: "Штраф 15,000₽" },
+            { number: 47, description: "Нарушение правил забора воды", penalty: "Штраф 10,000₽" },
+            { number: 48, description: "Незаконное строительство на береговой полосе", penalty: "Штраф 25,000₽" },
+            { number: 49, description: "Нарушение правил использования прибрежных зон", penalty: "Штраф 18,000₽" },
+            { number: 50, description: "Несоблюдение правил содержания пляжей", penalty: "Штраф 12,000₽" },
+            
+            // Дорожные нарушения (51-100)
+            { number: 51, description: "Превышение скорости до 20 км/ч", penalty: "Штраф 2,000₽" },
+            { number: 52, description: "Превышение скорости от 20 до 40 км/ч", penalty: "Штраф 3,000₽" },
+            { number: 53, description: "Превышение скорости от 40 до 60 км/ч", penalty: "Штраф 5,000₽" },
+            { number: 54, description: "Превышение скорости свыше 60 км/ч", penalty: "Штраф 8,000₽" },
+            { number: 55, description: "Проезд на красный сигнал светофора", penalty: "Штраф 5,000₽" },
+            { number: 56, description: "Нарушение правил проезда перекрестков", penalty: "Штраф 4,000₽" },
+            { number: 57, description: "Несоблюдение очередности проезда", penalty: "Штраф 3,000₽" },
+            { number: 58, description: "Нарушение правил обгона", penalty: "Штраф 6,000₽" },
+            { number: 59, description: "Несоблюдение дистанции", penalty: "Штраф 2,500₽" },
+            { number: 60, description: "Нарушение правил маневрирования", penalty: "Штраф 3,500₽" },
+            { number: 61, description: "Несоблюдение требований знаков", penalty: "Штраф 4,000₽" },
+            { number: 62, description: "Нарушение правил остановки", penalty: "Штраф 2,000₽" },
+            { number: 63, description: "Нарушение правил стоянки", penalty: "Штраф 1,500₽" },
+            { number: 64, description: "Стоянка в запрещенных местах", penalty: "Штраф 3,000₽" },
+            { number: 65, description: "Остановка на пешеходном переходе", penalty: "Штраф 4,000₽" },
+            { number: 66, description: "Парковка на газоне", penalty: "Штраф 5,000₽" },
+            { number: 67, description: "Несоблюдение правил перевозки пассажиров", penalty: "Штраф 4,500₽" },
+            { number: 68, description: "Перевозка пассажиров без билетов", penalty: "Штраф 3,000₽" },
+            { number: 69, description: "Нарушение правил перевозки детей", penalty: "Штраф 6,000₽" },
+            { number: 70, description: "Неиспользование детских кресел", penalty: "Штраф 5,000₽" },
+            { number: 71, description: "Управление ТС без документов", penalty: "Штраф 7,000₽" },
+            { number: 72, description: "Управление без прав", penalty: "Штраф 15,000₽" },
+            { number: 73, description: "Управление в состоянии опьянения", penalty: "Штраф 20,000₽" },
+            { number: 74, description: "Передача управления лицу без прав", penalty: "Штраф 18,000₽" },
+            { number: 75, description: "Несоблюдение правил техосмотра", penalty: "Штраф 8,000₽" },
+            { number: 76, description: "Управление неисправным ТС", penalty: "Штраф 6,000₽" },
+            { number: 77, description: "Несоблюдение правил перевозки грузов", penalty: "Штраф 10,000₽" },
+            { number: 78, description: "Перевозка опасных грузов без разрешения", penalty: "Штраф 25,000₽" },
+            { number: 79, description: "Нарушение правил движения тяжеловесных ТС", penalty: "Штраф 15,000₽" },
+            { number: 80, description: "Несоблюдение правил движения в жилых зонах", penalty: "Штраф 4,000₽" },
+            { number: 81, description: "Нарушение правил учебной езды", penalty: "Штраф 5,000₽" },
+            { number: 82, description: "Несоблюдение правил движения на автомагистралях", penalty: "Штраф 3,000₽" },
+            { number: 83, description: "Нарушение правил проезда железнодорожных переездов", penalty: "Штраф 8,000₽" },
+            { number: 84, description: "Несоблюдение правил движения в темное время суток", penalty: "Штраф 4,500₽" },
+            { number: 85, description: "Нарушение правил использования световых приборов", penalty: "Штраф 3,500₽" },
+            { number: 86, description: "Несоблюдение правил буксировки", penalty: "Штраф 6,000₽" },
+            { number: 87, description: "Нарушение правил движения велосипедистов", penalty: "Штраф 2,000₽" },
+            { number: 88, description: "Несоблюдение правил движения пешеходов", penalty: "Штраф 1,500₽" },
+            { number: 89, description: "Нарушение правил перехода дороги", penalty: "Штраф 2,500₽" },
+            { number: 90, description: "Создание помех пешеходам", penalty: "Штраф 3,000₽" },
+            { number: 91, description: "Непропуск пешеходов", penalty: "Штраф 4,000₽" },
+            { number: 92, description: "Нарушение правил движения инвалидов", penalty: "Штраф 5,000₽" },
+            { number: 93, description: "Несоблюдение правил движения общественного транспорта", penalty: "Штраф 7,000₽" },
+            { number: 94, description: "Нарушение правил остановки общественного транспорта", penalty: "Штраф 6,000₽" },
+            { number: 95, description: "Создание помех общественному транспорту", penalty: "Штраф 8,000₽" },
+            { number: 96, description: "Несоблюдение правил движения такси", penalty: "Штраф 9,000₽" },
+            { number: 97, description: "Нарушение правил стоянки такси", penalty: "Штраф 5,000₽" },
+            { number: 98, description: "Незаконная деятельность такси", penalty: "Штраф 12,000₽" },
+            { number: 99, description: "Перевозка пассажиров без лицензии", penalty: "Штраф 15,000₽" },
+            { number: 100, description: "Нарушение правил аренды ТС", penalty: "Штраф 10,000₽" },
+            
+            // Нарушения в сфере торговли (101-150)
+            { number: 101, description: "Торговля без лицензии", penalty: "Штраф 20,000₽" },
+            { number: 102, description: "Нарушение правил продажи алкоголя", penalty: "Штраф 25,000₽" },
+            { number: 103, description: "Продажа алкоголя несовершеннолетним", penalty: "Штраф 30,000₽" },
+            { number: 104, description: "Нарушение правил продажи табачных изделий", penalty: "Штраф 15,000₽" },
+            { number: 105, description: "Продажа табака несовершеннолетним", penalty: "Штраф 20,000₽" },
+            { number: 106, description: "Несоблюдение правил торговли продовольственными товарами", penalty: "Штраф 18,000₽" },
+            { number: 107, description: "Нарушение санитарных норм в торговле", penalty: "Штраф 22,000₽" },
+            { number: 108, description: "Продажа просроченных товаров", penalty: "Штраф 25,000₽" },
+            { number: 109, description: "Обман покупателей", penalty: "Штраф 28,000₽" },
+            { number: 110, description: "Несоблюдение правил взвешивания", penalty: "Штраф 12,000₽" },
+            { number: 111, description: "Нарушение правил ценообразования", penalty: "Штраф 15,000₽" },
+            { number: 112, description: "Несоблюдение правил маркировки товаров", penalty: "Штраф 20,000₽" },
+            { number: 113, description: "Продажа товаров без сертификатов", penalty: "Штраф 30,000₽" },
+            { number: 114, description: "Нарушение правил реализации подакцизных товаров", penalty: "Штраф 35,000₽" },
+            { number: 115, description: "Несоблюдение правил торговли ювелирными изделиями", penalty: "Штраф 40,000₽" },
+            { number: 116, description: "Нарушение правил продажи лекарств", penalty: "Штраф 45,000₽" },
+            { number: 117, description: "Продажа лекарств без рецептов", penalty: "Штраф 50,000₽" },
+            { number: 118, description: "Несоблюдение правил торговли оружием", penalty: "Штраф 60,000₽" },
+            { number: 119, description: "Нарушение правил продажи боеприпасов", penalty: "Штраф 55,000₽" },
+            { number: 120, description: "Продажа оружия без лицензии", penalty: "Штраф 70,000₽" },
+            { number: 121, description: "Несоблюдение правил торговли животными", penalty: "Штраф 25,000₽" },
+            { number: 122, description: "Нарушение правил продажи растений", penalty: "Штраф 20,000₽" },
+            { number: 123, description: "Продажа редких видов животных", penalty: "Штраф 80,000₽" },
+            { number: 124, description: "Несоблюдение правил торговли антиквариатом", penalty: "Штраф 35,000₽" },
+            { number: 125, description: "Нарушение правил продажи культурных ценностей", penalty: "Штраф 45,000₽" },
+            { number: 126, description: "Продажа краденых товаров", penalty: "Штраф 50,000₽" },
+            { number: 127, description: "Несоблюдение правил комиссионной торговли", penalty: "Штраф 30,000₽" },
+            { number: 128, description: "Нарушение правил торговли на рынках", penalty: "Штраф 15,000₽" },
+            { number: 129, description: "Продажа товаров в неустановленных местах", penalty: "Штраф 18,000₽" },
+            { number: 130, description: "Несоблюдение правил уличной торговли", penalty: "Штраф 12,000₽" },
+            { number: 131, description: "Нарушение правил торговли в интернете", penalty: "Штраф 25,000₽" },
+            { number: 132, description: "Продажа товаров без чека", penalty: "Штраф 10,000₽" },
+            { number: 133, description: "Несоблюдение правил возврата товаров", penalty: "Штраф 20,000₽" },
+            { number: 134, description: "Нарушение правил гарантийного обслуживания", penalty: "Штраф 22,000₽" },
+            { number: 135, description: "Невыдача кассового чека", penalty: "Штраф 15,000₽" },
+            { number: 136, description: "Использование неисправной ККМ", penalty: "Штраф 18,000₽" },
+            { number: 137, description: "Несоблюдение правил работы с ККМ", penalty: "Штраф 12,000₽" },
+            { number: 138, description: "Нарушение правил ведения кассовой дисциплины", penalty: "Штраф 20,000₽" },
+            { number: 139, description: "Несоблюдение правил инкассации", penalty: "Штраф 25,000₽" },
+            { number: 140, description: "Нарушение правил хранения наличности", penalty: "Штраф 15,000₽" },
+            { number: 141, description: "Несоблюдение правил расчета с покупателями", penalty: "Штраф 10,000₽" },
+            { number: 142, description: "Нарушение правил работы с платежными терминала", penalty: "Штраф 8,000₽" },
+            { number: 143, description: "Несоблюдение правил эквайринга", penalty: "Штраф 12,000₽" },
+            { number: 144, description: "Нарушение правил безналичных расчетов", penalty: "Штраф 15,000₽" },
+            { number: 145, description: "Несоблюдение правил работы с иностранной валютой", penalty: "Штраф 30,000₽" },
+            { number: 146, description: "Нарушение правил обмена валюты", penalty: "Штраф 25,000₽" },
+            { number: 147, description: "Незаконная валютная операция", penalty: "Штраф 40,000₽" },
+            { number: 148, description: "Несоблюдение правим ведения валютных счетов", penalty: "Штраф 35,000₽" },
+            { number: 149, description: "Нарушение правил репатриации валюты", penalty: "Штраф 50,000₽" },
+            { number: 150, description: "Несоблюдение правил валютного контроля", penalty: "Штраф 45,000₽" },
+            
+            // Нарушения в других сферах (151-200)
+            { number: 151, description: "Нарушение миграционного законодательства", penalty: "Штраф 20,000₽" },
+            { number: 152, description: "Несоблюдение правил регистрации иностранцев", penalty: "Штраф 25,000₽" },
+            { number: 153, description: "Нарушение правил пребывания иностранцев", penalty: "Штраф 30,000₽" },
+            { number: 154, description: "Несоблюдение правил трудоустройства иностранцев", penalty: "Штраф 35,000₽" },
+            { number: 155, description: "Нарушение правил депортации", penalty: "Штраф 40,000₽" },
+            { number: 156, description: "Несоблюдение правил въезда/выезда", penalty: "Штраф 15,000₽" },
+            { number: 157, description: "Нарушение паспортного режима", penalty: "Штраф 10,000₽" },
+            { number: 158, description: "Несоблюдение правил регистрации по месту жительства", penalty: "Штраф 8,000₽" },
+            { number: 159, description: "Нарушение правил прописки", penalty: "Штраф 12,000₽" },
+            { number: 160, description: "Несоблюдение правил временной регистрации", penalty: "Штраф 6,000₽" },
+            { number: 161, description: "Нарушение правил воинского учета", penalty: "Штраф 15,000₽" },
+            { number: 162, description: "Несоблюдение правил призыва", penalty: "Штраф 20,000₽" },
+            { number: 163, description: "Уклонение от военной службы", penalty: "Штраф 25,000₽" },
+            { number: 164, description: "Нарушение правил воинской обязанности", penalty: "Штраф 18,000₽" },
+            { number: 165, description: "Несоблюдение правил альтернативной службы", penalty: "Штраф 22,000₽" },
+            { number: 166, description: "Нарушение правил налогообложения", penalty: "Штраф 30,000₽" },
+            { number: 167, description: "Несоблюдение сроков уплаты налогов", penalty: "Штраф 25,000₽" },
+            { number: 168, description: "Непредставление налоговой отчетности", penalty: "Штраф 35,000₽" },
+            { number: 169, description: "Нарушение правил ведения учета", penalty: "Штраф 28,000₽" },
+            { number: 170, description: "Несоблюдение правил налогового контроля", penalty: "Штраф 32,000₽" },
+            { number: 171, description: "Нарушение таможенных правил", penalty: "Штраф 40,000₽" },
+            { number: 172, description: "Несоблюдение правил декларирования", penalty: "Штраф 35,000₽" },
+            { number: 173, description: "Нарушение правил перемещения товаров", penalty: "Штраф 45,000₽" },
+            { number: 174, description: "Несоблюдение таможенных процедур", penalty: "Штраф 38,000₽" },
+            { number: 175, description: "Нарушение правил таможенного контроля", penalty: "Штраф 42,000₽" },
+            { number: 176, description: "Незаконное перемещение культурных ценностей", penalty: "Штраф 50,000₽" },
+            { number: 177, description: "Несоблюдение правил вывоза антиквариата", penalty: "Штраф 55,000₽" },
+            { number: 178, description: "Нарушение правил ввоза запрещенных товаров", penalty: "Штраф 60,000₽" },
+            { number: 179, description: "Несоблюдение правил санитарного контроля", penalty: "Штраф 25,000₽" },
+            { number: 180, description: "Нарушение правил фитосанитарного контроля", penalty: "Штраф 30,000₽" },
+            { number: 181, description: "Несоблюдение правил ветеринарного контроля", penalty: "Штраф 28,000₽" },
+            { number: 182, description: "Нарушение правил карантина", penalty: "Штраф 35,000₽" },
+            { number: 183, description: "Несоблюдение правил безопасности товаров", penalty: "Штраф 40,000₽" },
+            { number: 184, description: "Нарушение правил сертификации", penalty: "Штраф 45,000₽" },
+            { number: 185, description: "Несоблюдение правил стандартизации", penalty: "Штраф 38,000₽" },
+            { number: 186, description: "Нарушение правил качества товаров", penalty: "Штраф 42,000₽" },
+            { number: 187, description: "Несоблюдение правил маркировки", penalty: "Штраф 32,000₽" },
+            { number: 188, description: "Нарушение правил упаковки", penalty: "Штраф 28,000₽" },
+            { number: 189, description: "Несоблюдение правил хранения товаров", penalty: "Штраф 35,000₽" },
+            { number: 190, description: "Нарушение правил транспортировки", penalty: "Штраф 30,000₽" },
+            { number: 191, description: "Несоблюдение правил реализации", penalty: "Штраф 25,000₽" },
+            { number: 192, description: "Нарушение правим утилизации", penalty: "Штраф 40,000₽" },
+            { number: 193, description: "Несоблюдение экологических норм", penalty: "Штраф 50,000₽" },
+            { number: 194, description: "Нарушение правил охраны природы", penalty: "Штраф 45,000₽" },
+            { number: 195, description: "Несоблюдение правил выбросов", penalty: "Штраф 55,000₽" },
+            { number: 196, description: "Нарушение правил обращения с отходами", penalty: "Штраф 60,000₽" },
+            { number: 197, description: "Несоблюдение правил защиты окружающей среды", penalty: "Штраф 65,000₽" },
+            { number: 198, description: "Нарушение правил использования природных ресурсов", penalty: "Штраф 70,000₽" },
+            { number: 199, description: "Несоблюдение правил охраны животных", penalty: "Штраф 35,000₽" },
+            { number: 200, description: "Нарушение правил охраны растений", penalty: "Штраф 30,000₽" }
+        ];
+
+        // DOM elements
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const categoryTitle = document.getElementById('category-title');
+        const articlesContainer = document.getElementById('articles-container');
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+
+        // Function to display articles
+        function displayArticles(articles, searchTerm = '') {
+            articlesContainer.innerHTML = '';
+            
+            const filteredArticles = articles.filter(article => {
+                if (!searchTerm) return true;
+                
+                const searchLower = searchTerm.toLowerCase();
+                return (
+                    article.number.toString().includes(searchTerm) ||
+                    article.description.toLowerCase().includes(searchLower) ||
+                    article.penalty.toLowerCase().includes(searchLower)
+                );
+            });
+            
+            if (filteredArticles.length === 0) {
+                articlesContainer.innerHTML = '<div class="no-results">По вашему запросу ничего не найдено</div>';
+                return;
+            }
+            
+            filteredArticles.forEach(article => {
+                const articleCard = document.createElement('div');
+                articleCard.className = 'article-card';
+                
+                articleCard.innerHTML = `
+                    <div class="article-number">Статья ${article.number}</div>
+                    <div class="article-description">${article.description}</div>
+                    <div class="article-penalty">${article.penalty}</div>
+                `;
+                
+                articlesContainer.appendChild(articleCard);
+            });
+        }
+
+        // Initial display - show UK articles
+        displayArticles(ukArticles);
+
+        // Add event listeners to category buttons
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update category title and articles based on button data
+                const category = this.getAttribute('data-category');
+                
+                if (category === 'uk') {
+                    categoryTitle.textContent = 'Уголовный Кодекс РФ';
+                    displayArticles(ukArticles, searchInput.value);
+                } else if (category === 'koap') {
+                    categoryTitle.textContent = 'Кодекс об Административных Правонарушениях РФ';
+                    displayArticles(koapArticles, searchInput.value);
+                }
+                
+                // Add animation effect
+                articlesContainer.style.opacity = '0';
+                setTimeout(() => {
+                    articlesContainer.style.opacity = '1';
+                }, 300);
+            });
+        });
+
+        // Add search functionality
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = searchInput.value.trim();
+            const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+            
+            if (activeCategory === 'uk') {
+                displayArticles(ukArticles, searchTerm);
+            } else {
+                displayArticles(koapArticles, searchTerm);
+            }
+        }
+
+        // Add hover effect to article cards
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.closest('.article-card')) {
+                const card = e.target.closest('.article-card');
+                card.style.animation = 'pulse 0.5s ease';
+                setTimeout(() => {
+                    card.style.animation = '';
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
