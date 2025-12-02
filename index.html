@@ -39,6 +39,11 @@
             line-height: 1.3;
             font-size: var(--font-size-base);
             font-weight: 500;
+            opacity: 0; /* Скрываем body для эффекта плавного появления */
+            transition: opacity 0.5s ease-in-out;
+        }
+        body.loaded {
+            opacity: 1;
         }
 
         /* --- Global Header & Tabs --- */
@@ -72,33 +77,49 @@
             font-size: 15px;
             font-weight: 700;
             border-bottom: 3px solid transparent;
-            transition: color 0.3s, border-bottom 0.3s;
+            transition: color 0.3s, border-bottom 0.3s, transform 0.2s; /* Добавлена анимация transform */
             outline: none;
         }
         .tab-button:hover {
             color: var(--text-main);
+            transform: translateY(-2px);
         }
         .tab-button.active {
             color: var(--tab-active);
             border-bottom: 3px solid var(--tab-active);
+            transform: translateY(0);
         }
         
         .tab-content { display: none; }
-        .tab-content.active { display: block; }
+        .tab-content.active { 
+            display: block; 
+            animation: fadeIn 0.5s ease-out; /* Анимация для контента вкладок */
+        }
         
-        /* --- Welcome Screen --- */
+        /* --- Welcome Screen Animations & Styles --- */
+        @keyframes welcomeFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         #WelcomeScreen {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 60vh; /* Высота для центрирования */
+            height: 60vh; 
             text-align: center;
             background: #222222;
             border-radius: 8px;
             border: 1px solid var(--border-color);
             margin: 20px auto;
             max-width: 90%;
+            animation: welcomeFadeIn 1s ease-out forwards;
         }
         #WelcomeScreen h2 {
             font-size: 2.5rem;
@@ -106,14 +127,41 @@
             margin-bottom: 15px;
             font-weight: 900;
             letter-spacing: 3px;
+            animation: pulse 1.5s infinite alternate; /* Эффект пульсации для заголовка */
         }
         #WelcomeScreen p {
             font-size: 1.2rem;
             color: var(--text-muted);
             margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards; /* Появляется с задержкой */
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); text-shadow: 0 0 5px rgba(255,255,255,0.2); }
+            to { transform: scale(1.03); text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        }
+
+        /* --- Law Cards Hover Effect --- */
+        .law-card {
+            background: #2a2a2a; 
+            margin-bottom: 6px;
+            padding: var(--card-padding);
+            border-radius: 4px;
+            border-left: 3px solid var(--border-color); 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .law-card:hover { 
+            background: #353535; 
+            border-left-color: var(--accent-main);
+            transform: scale(1.01); /* Легкий зум при наведении */
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
         }
         
-        /* --- Search Bar --- */
+        /* Остальные стили (поиск, сетка, карточки, повышение) без изменений */
         .search-container {
             max-width: 500px;
             margin: 0 auto 20px auto;
@@ -128,6 +176,10 @@
             color: var(--text-main);
             font-size: 14px;
             outline: none;
+            transition: border-color 0.3s;
+        }
+        input#searchInput:focus {
+            border-color: var(--accent-main);
         }
         .search-icon-input {
             position: absolute;
@@ -137,7 +189,6 @@
             color: var(--text-muted);
         }
 
-        /* --- Grid & Columns --- */
         .main-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -164,19 +215,6 @@
             letter-spacing: 1px;
         }
 
-        /* --- Law Cards (Legislative Base) --- */
-        .law-card {
-            background: #2a2a2a; 
-            margin-bottom: 6px;
-            padding: var(--card-padding);
-            border-radius: 4px;
-            border-left: 3px solid var(--border-color); 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.2s;
-        }
-        .law-card:hover { background: #353535; border-left-color: var(--accent-main); }
         .law-info { flex: 1; padding-right: 8px; display: flex; align-items: center; }
         .law-icon { margin-right: 10px; width: 16px; text-align: center; color: var(--accent-sub); }
         .law-card:hover .law-icon { color: var(--text-main); } 
@@ -200,13 +238,17 @@
         .crim-badge { background: var(--badge-crim-bg); color: var(--badge-crim-text); }
         .admin-card .punishment-badge { background: var(--badge-admin-bg); color: var(--badge-admin-text); border-color: #999; }
 
-        /* --- Procedural Blocks & Notes --- */
         .proc-block {
             background: #2a2a2a;
             margin-bottom: 8px;
             padding: 8px;
             border-radius: 4px;
             border-top: 2px solid var(--accent-sub);
+            transition: all 0.2s;
+        }
+        .proc-block:hover {
+            border-top-color: var(--accent-main);
+            background: #303030;
         }
         .proc-title { 
             font-weight: 700; 
@@ -220,7 +262,6 @@
         }
         .proc-title .law-icon { color: var(--text-main); }
         .proc-list { list-style: none; padding-left: 2px; }
-        /* Убрано выделение текста: li теперь не bold */
         .proc-list li { margin-bottom: 4px; font-size: 0.9em; color: var(--text-muted); position: relative; padding-left: 12px; font-weight: 500; }
         .proc-list li::before { content: "▪"; color: var(--accent-sub); position: absolute; left: 0; font-size: 1em; line-height: 1.2; top: 1px; }
 
@@ -230,6 +271,10 @@
             background: #303030;
             border: 2px solid var(--accent-main); 
             border-radius: 4px;
+            transition: box-shadow 0.3s;
+        }
+        .important-block:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
         .important-title {
             font-size: 1rem;
@@ -261,6 +306,11 @@
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 4px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .rank-block:hover {
+            transform: translateX(5px);
+            box-shadow: 5px 0 10px rgba(0, 0, 0, 0.3);
         }
         .rank-header {
             font-size: 1.2rem;
@@ -274,16 +324,19 @@
             list-style: none;
             padding-left: 0;
         }
-        /* Убрано выделение текста: li теперь не bold */
         .rank-list li {
             background: #353535;
             padding: 8px;
             margin-bottom: 6px;
             border-radius: 3px;
             color: var(--text-muted);
-            font-weight: 500; /* Убрано жирное начертание */
+            font-weight: 500; 
             position: relative;
             padding-left: 30px;
+            transition: background 0.2s;
+        }
+        .rank-list li:hover {
+             background: #3f3f3f;
         }
         .rank-list-wrapper { counter-reset: step-counter; }
 
@@ -305,7 +358,11 @@
 
 <div id="WelcomeScreen" class="active">
     <h2>ДОБРО ПОЖАЛОВАТЬ</h2>
-    <p>Выберите один из разделов выше для начала работы.</p>
+    <p>
+        <i class="fas fa-info-circle"></i> Это **неофициальный фан-сайт**, созданный для **удобства сотрудников**.<br>
+        Здесь вы можете быстро найти все **важные статьи** и ознакомиться с **системой повышения**.<br>
+        Выберите вкладку выше, чтобы начать работу!
+    </p>
 </div>
 
 <div id="Legislative" class="tab-content">
@@ -544,29 +601,49 @@
         let i, tabcontent, tablinks;
         let welcomeScreen = document.getElementById('WelcomeScreen');
 
-        // Скрыть стартовый экран, если он активен
+        // 1. Скрываем стартовый экран с анимацией
         if (welcomeScreen.classList.contains('active')) {
-            welcomeScreen.style.display = 'none';
+            welcomeScreen.style.animation = 'welcomeFadeOut 0.5s ease-in-out forwards';
             welcomeScreen.classList.remove('active');
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+            }, 500);
         }
 
-        // Скрыть весь контент
+        // Добавляем ключевой кадр для плавного исчезновения
+        if (!document.getElementById('welcomeFadeOutKeyframes')) {
+            let style = document.createElement('style');
+            style.id = 'welcomeFadeOutKeyframes';
+            style.innerHTML = '@keyframes welcomeFadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-20px); } }';
+            document.head.appendChild(style);
+        }
+
+        // 2. Скрыть весь контент (чтобы избежать мерцания при смене вкладок)
         tabcontent = document.getElementsByClassName("tab-content");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "none";
+            tabcontent[i].style.opacity = 0; // Сбрасываем прозрачность
         }
 
-        // Удалить класс 'active' у всех кнопок
+        // 3. Удалить класс 'active' у всех кнопок
         tablinks = document.getElementsByClassName("tab-button");
         for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
+            tablinks[i].classList.remove("active");
         }
 
-        // Показать текущую вкладку и сделать кнопку активной
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
+        // 4. Показать текущую вкладку и сделать кнопку активной
+        let targetTab = document.getElementById(tabName);
+        if (targetTab) {
+            // Показываем контент после небольшой задержки для анимации затухания
+            setTimeout(() => {
+                targetTab.style.display = "block";
+                targetTab.style.animation = 'fadeIn 0.5s ease-out forwards'; // Применяем fadeIn
+            }, 50); 
+        }
+
+        evt.currentTarget.classList.add("active");
         
-        // Сбросить поле поиска и применить фильтр при переключении на Законодательную Базу
+        // 5. Логика для поиска
         if (tabName === 'Legislative') {
             let searchInput = document.getElementById('searchInput');
             if (searchInput) {
@@ -576,7 +653,7 @@
         }
     }
 
-    // Функция для фильтрации законов (работает только на вкладке 'Legislative')
+    // Функция для фильтрации законов
     function filterLaws() {
         let input = document.getElementById('searchInput').value.toLowerCase();
         let items = document.getElementsByClassName('search-item');
@@ -591,15 +668,19 @@
         }
     }
 
-    // Показать стартовый экран при загрузке
+    // Загрузка
     document.addEventListener("DOMContentLoaded", function() {
-        // Убедимся, что стартовый экран активен и видим, а контент скрыт
+        // Делаем body видимым сразу, чтобы показать заставку
+        document.body.classList.add('loaded');
+        
+        // Убедимся, что стартовый экран видим
         let welcomeScreen = document.getElementById('WelcomeScreen');
         if (welcomeScreen) {
             welcomeScreen.style.display = 'flex';
             welcomeScreen.classList.add('active');
         }
         
+        // Скрываем контент вкладок
         let tabcontent = document.getElementsByClassName("tab-content");
         for (let i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "none";
