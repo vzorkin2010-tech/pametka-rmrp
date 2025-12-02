@@ -86,6 +86,33 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         
+        /* --- Welcome Screen --- */
+        #WelcomeScreen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh; /* Высота для центрирования */
+            text-align: center;
+            background: #222222;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin: 20px auto;
+            max-width: 90%;
+        }
+        #WelcomeScreen h2 {
+            font-size: 2.5rem;
+            color: var(--accent-main);
+            margin-bottom: 15px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+        #WelcomeScreen p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+        
         /* --- Search Bar --- */
         .search-container {
             max-width: 500px;
@@ -155,9 +182,6 @@
         .law-card:hover .law-icon { color: var(--text-main); } 
         .law-number { font-weight: 700; color: var(--text-main); margin-right: 6px; font-size: 1.05em; white-space: nowrap; }
         .law-desc { color: var(--text-muted); font-size: 1em; font-weight: 500; }
-        .punishment-badge { /* ... (Стили бейджей) ... */ }
-        .crim-badge { background: var(--badge-crim-bg); color: var(--badge-crim-text); }
-        .admin-card .punishment-badge { background: var(--badge-admin-bg); color: var(--badge-admin-text); border-color: #999; }
         .punishment-badge {
             padding: 4px 6px;
             border-radius: 4px;
@@ -173,8 +197,10 @@
             line-height: 1.1;
             border: 1px solid var(--border-color);
         }
+        .crim-badge { background: var(--badge-crim-bg); color: var(--badge-crim-text); }
+        .admin-card .punishment-badge { background: var(--badge-admin-bg); color: var(--badge-admin-text); border-color: #999; }
 
-        /* --- Procedural Blocks --- */
+        /* --- Procedural Blocks & Notes --- */
         .proc-block {
             background: #2a2a2a;
             margin-bottom: 8px;
@@ -194,10 +220,10 @@
         }
         .proc-title .law-icon { color: var(--text-main); }
         .proc-list { list-style: none; padding-left: 2px; }
+        /* Убрано выделение текста: li теперь не bold */
         .proc-list li { margin-bottom: 4px; font-size: 0.9em; color: var(--text-muted); position: relative; padding-left: 12px; font-weight: 500; }
         .proc-list li::before { content: "▪"; color: var(--accent-sub); position: absolute; left: 0; font-size: 1em; line-height: 1.2; top: 1px; }
 
-        /* --- Important Block Style --- */
         .important-block {
             margin-top: 15px;
             padding: 10px;
@@ -214,7 +240,15 @@
             padding-bottom: 5px;
             border-bottom: 1px solid var(--accent-main);
         }
-
+        .misc-note {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 4px;
+            padding-left: 5px;
+            border-left: 2px solid var(--border-color);
+        }
+        
         /* --- Rank Up Memo Styles (Памятки) --- */
         .rank-up-memo {
             max-width: 800px;
@@ -236,37 +270,20 @@
             display: flex;
             align-items: center;
         }
-        .rank-header i { margin-right: 10px; }
         .rank-list {
             list-style: none;
             padding-left: 0;
         }
+        /* Убрано выделение текста: li теперь не bold */
         .rank-list li {
             background: #353535;
             padding: 8px;
             margin-bottom: 6px;
             border-radius: 3px;
             color: var(--text-muted);
-            font-weight: 500;
+            font-weight: 500; /* Убрано жирное начертание */
             position: relative;
             padding-left: 30px;
-        }
-        .rank-list li::before {
-            content: counter(step-counter);
-            counter-increment: step-counter;
-            background: var(--accent-main);
-            color: #000;
-            font-weight: 700;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 20px;
-            position: absolute;
-            left: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.8em;
         }
         .rank-list-wrapper { counter-reset: step-counter; }
 
@@ -282,12 +299,16 @@
 </header>
 
 <div class="tabs">
-    <button class="tab-button active" onclick="openTab(event, 'Legislative')"><i class="fas fa-balance-scale"></i> Законодательная База</button>
-    <button class="tab-button" onclick="openTab(event, 'Memos')"><i class="fas fa-user-graduate"></i> Памятки (Курсанты)</button>
+    <button class="tab-button" onclick="openTab(event, 'Memos')"><i class="fas fa-user-graduate"></i> Памятка о повышении для курсантов</button>
+    <button class="tab-button" onclick="openTab(event, 'Legislative')"><i class="fas fa-balance-scale"></i> Памятка статьи</button>
 </div>
 
-<div id="Legislative" class="tab-content active">
+<div id="WelcomeScreen" class="active">
+    <h2>ДОБРО ПОЖАЛОВАТЬ</h2>
+    <p>Выберите один из разделов выше для начала работы.</p>
+</div>
 
+<div id="Legislative" class="tab-content">
     <div class="search-container">
         <i class="fas fa-search search-icon-input"></i>
         <input type="text" id="searchInput" placeholder="Поиск (номер, название, наказание)..." onkeyup="filterLaws()">
@@ -378,10 +399,10 @@
                 </div>
                 
                 <div class="proc-block search-item" style="background: #2a2a2a; border-color: #555;">
-                    <div class="misc-note"><i class="fas fa-info-circle"></i> 1. **Адвокат** несёт только **рекомендательный характер**</div>
-                    <div class="misc-note"><i class="fas fa-info-circle"></i> 2. К **ОМОНУ/СПЕЦНАЗУ/ГРОМу/ФСБ А** обращаемся только по послед. **2 цифрам id**</div>
-                    <div class="misc-note"><i class="fas fa-info-circle"></i> 3. ФЗоГСЗОтСтатья 15. **Территории органов МВД**</div>
-                    <div class="misc-note"><i class="fas fa-info-circle"></i> 4. Озвучиваем **права задержанного** только по **запросу**</div>
+                    <div class="misc-note"><i class="fas fa-info-circle"></i> 1. Адвокат несёт только рекомендательный характер</div>
+                    <div class="misc-note"><i class="fas fa-info-circle"></i> 2. К ОМОНУ/СПЕЦНАЗУ/ГРОМу/ФСБ А обращаемся только по послед. 2 цифрам id</div>
+                    <div class="misc-note"><i class="fas fa-info-circle"></i> 3. ФЗоГСЗОтСтатья 15. Территории органов МВД</div>
+                    <div class="misc-note"><i class="fas fa-info-circle"></i> 4. Озвучиваем права задержанного только по запросу</div>
                     
                      <div class="proc-block search-item" style="margin-top:10px; border-top-color: var(--accent-main); background: #252525;">
                         <span class="proc-title" style="color: var(--text-main);"><i class="fas fa-door-open law-icon"></i> ПК 11.1 Допуск на место проц. действий</span>
@@ -430,47 +451,47 @@
                 <div class="proc-block search-item">
                     <span class="proc-title"><i class="fas fa-list-ol law-icon"></i> 10.1 Порядок задержания</span>
                     <ul class="proc-list">
-                        <li>а) Применить спец. средства (**наручники**)</li>
-                        <li>б) **Представиться**, показать **жетон**</li>
-                        <li>в) Огласить **статьи** нарушения</li>
-                        <li>г) Произвести **личный обыск**</li>
-                        <li>д) Доставить в **участок**</li>
+                        <li>а) Применить спец. средства (наручники)</li>
+                        <li>б) Представиться, показать жетон</li>
+                        <li>в) Огласить статьи нарушения</li>
+                        <li>г) Произвести личный обыск</li>
+                        <li>д) Доставить в участок</li>
                     </ul>
                 </div>
 
                 <div class="proc-block search-item">
                     <span class="proc-title"><i class="fas fa-dungeon law-icon"></i> 18.2 Порядок ареста</span>
                     <ul class="proc-list">
-                        <li>а) Уведомить о начале стадии **ареста**, разъяснить причину</li>
-                        <li>б) **Личный обыск** с **конфискацией нелегала**</li>
-                        <li>в) Произвести **арест** лица</li>
+                        <li>а) Уведомить о начале стадии ареста, разъяснить причину</li>
+                        <li>б) Личный обыск с конфискацией нелегала</li>
+                        <li>в) Произвести арест лица</li>
                     </ul>
                 </div>
 
                 <div class="proc-block search-item">
                     <span class="proc-title"><i class="fas fa-lock-open law-icon"></i> 14.1 Основания для окончания задержания</span>
                     <ul class="proc-list">
-                        <li>а) Недостаточно **доказательств**</li>
-                        <li>б) Не предусмотрено **лишения свободы**</li>
-                        <li>в) Истек **срок** (60 мин)</li>
+                        <li>а) Недостаточно доказательств</li>
+                        <li>б) Не предусмотрено лишения свободы</li>
+                        <li>в) Истек срок (60 мин)</li>
                     </ul>
                 </div>
 
                 <div class="important-block search-item">
                     <div class="important-title"><i class="fas fa-star law-icon" style="color:var(--text-main);"></i> Важные Должностные и Оружейные Статьи (УК)</div>
                     
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-box-open law-icon"></i><span class="law-number">63.1</span><span class="law-desc">Незаконное **оружие** | **Маты** | **Патроны**</span></div><div class="punishment-badge crim-badge">4 года</div></div>
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-shield-alt law-icon"></i><span class="law-number">63.2</span><span class="law-desc">Незаконные **бронежилеты** 3 и 4 класса</span></div><div class="punishment-badge crim-badge">4 года</div></div>
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><span class="law-icon"><i class="fas fa-holster"></i></span><span class="law-number">63.3</span><span class="law-desc">Ношение **огнестрела в открытом виде**</span></div><div class="punishment-badge crim-badge">5 лет</div></div>
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-crosshairs law-icon"></i><span class="law-number">63.4</span><span class="law-desc">Причинение вреда здоровью **оружием**</span></div><div class="punishment-badge crim-badge">6 лет</div></div>
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-user-tie law-icon"></i><span class="law-number">76.1</span><span class="law-desc">**Злоупотребление** должностными</span></div><div class="punishment-badge crim-badge">500к|3 г</div></div>
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-angle-double-up law-icon"></i><span class="law-number">77.1</span><span class="law-desc">**Превышение** должностных полномочий</span></div><div class="punishment-badge crim-badge">500к|3 г</div></div>
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-thumbs-down law-icon"></i><span class="law-number">78</span><span class="law-desc">**Неисполнение приказа**</span></div><div class="punishment-badge crim-badge">100к|3 г</div></div>
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-hand-holding-usd law-icon"></i><span class="law-number">79</span><span class="law-desc">Получение или дача **взятки**</span></div><div class="punishment-badge crim-badge">8 лет</div></div>
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-user-shield law-icon"></i><span class="law-number">90.1</span><span class="law-desc">Применение **насилия** к представителю власти</span></div><div class="punishment-badge crim-badge">4 года</div></div>
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-deaf law-icon"></i><span class="law-number">91</span><span class="law-desc">**Оскорбление** представителя власти</span></div><div class="punishment-badge crim-badge">30к | 3 года</div></div>
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-hand-paper law-icon"></i><span class="law-number">93</span><span class="law-desc">**Помеха** деятельности сотрудника</span></div><div class="punishment-badge crim-badge">25к | 3 года</div></div>
-                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-id-badge law-icon"></i><span class="law-number">94</span><span class="law-desc">**Присвоение полномочий** должн. лица</span></div><div class="punishment-badge crim-badge">350к | 6 лет</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-box-open law-icon"></i><span class="law-number">63.1</span><span class="law-desc">Незаконное оружие | Маты | Патроны</span></div><div class="punishment-badge crim-badge">4 года</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-shield-alt law-icon"></i><span class="law-number">63.2</span><span class="law-desc">Незаконные бронежилеты 3 и 4 класса</span></div><div class="punishment-badge crim-badge">4 года</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><span class="law-icon"><i class="fas fa-holster"></i></span><span class="law-number">63.3</span><span class="law-desc">Ношение огнестрела в открытом виде</span></div><div class="punishment-badge crim-badge">5 лет</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-crosshairs law-icon"></i><span class="law-number">63.4</span><span class="law-desc">Причинение вреда здоровью оружием</span></div><div class="punishment-badge crim-badge">6 лет</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-user-tie law-icon"></i><span class="law-number">76.1</span><span class="law-desc">Злоупотребление должностными</span></div><div class="punishment-badge crim-badge">500к|3 г</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-angle-double-up law-icon"></i><span class="law-number">77.1</span><span class="law-desc">Превышение должностных полномочий</span></div><div class="punishment-badge crim-badge">500к|3 г</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-thumbs-down law-icon"></i><span class="law-number">78</span><span class="law-desc">Неисполнение приказа</span></div><div class="punishment-badge crim-badge">100к|3 г</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-hand-holding-usd law-icon"></i><span class="law-number">79</span><span class="law-desc">Получение или дача взятки</span></div><div class="punishment-badge crim-badge">8 лет</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-user-shield law-icon"></i><span class="law-number">90.1</span><span class="law-desc">Применение насилия к представителю власти</span></div><div class="punishment-badge crim-badge">4 года</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-deaf law-icon"></i><span class="law-number">91</span><span class="law-desc">Оскорбление представителя власти</span></div><div class="punishment-badge crim-badge">30к | 3 года</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-hand-paper law-icon"></i><span class="law-number">93</span><span class="law-desc">Помеха деятельности сотрудника</span></div><div class="punishment-badge crim-badge">25к | 3 года</div></div>
+                    <div class="law-card search-item" style="border-left: 3px solid #777;"><div class="law-info"><i class="fas fa-id-badge law-icon"></i><span class="law-number">94</span><span class="law-desc">Присвоение полномочий должн. лица</span></div><div class="punishment-badge crim-badge">350к | 6 лет</div></div>
                 </div>
 
                 <div style="margin-top: 20px; text-align: right; color: var(--text-muted); font-size: 0.8em;">
@@ -489,11 +510,11 @@
             <div class="rank-header"><i class="fas fa-arrow-alt-circle-right"></i> Рядовой (1) &gt; Младший сержант (2)</div>
             <div class="rank-list-wrapper">
                 <ul class="rank-list">
-                    <li>Прослушать **вступительную лекцию**.</li>
-                    <li>Принять **присягу** сотрудника УВД по ЦАО.</li>
-                    <li>Прослушать лекцию на тему **"Работа сотрудника УВД"**.</li>
-                    <li>Принять участие в тренировке **"Строевая подготовка"**.</li>
-                    <li>Отстоять на посту **"Балларды"** или **"Ворота задние или передние"** - **30 минут** с докладом каждые **10 минут**.</li>
+                    <li>Прослушать вступительную лекцию.</li>
+                    <li>Принять присягу сотрудника УВД по ЦАО.</li>
+                    <li>Прослушать лекцию на тему "Работа сотрудника УВД".</li>
+                    <li>Принять участие в тренировке "Строевая подготовка".</li>
+                    <li>Отстоять на посту "Балларды" или "Ворота задние или передние" - 30 минут с докладом каждые 10 минут.</li>
                 </ul>
             </div>
         </div>
@@ -502,11 +523,11 @@
             <div class="rank-header"><i class="fas fa-arrow-alt-circle-right"></i> Младший сержант (2) &gt; Сержант (3)</div>
             <div class="rank-list-wrapper">
                 <ul class="rank-list">
-                    <li>Прослушать лекцию на тему **"Теория и Законы"**.</li>
-                    <li>**Патруль** с сотрудником ППС, ОРЛС или ОСН **"Гром"** | Разрешена замена на **одиночный пеший патруль** по прилегающему району к зданию УВД. - **30 минут** с докладом каждые **10 минут**.</li>
-                    <li>Отстоять на посту **"Балларды"** или **"Ворота задние или передние"** - **30 минут** с докладом каждые **10 минут**.</li>
-                    <li>Сдать **практический экзамен** на тему **"Задержание, арест и штрафы"**.</li>
-                    <li>Сдать **итоговый экзамен**.</li>
+                    <li>Прослушать лекцию на тему "Теория и Законы".</li>
+                    <li>Патруль с сотрудником ППС, ОРЛС или ОСН "Гром" | Разрешена замена на одиночный пеший патруль по прилегающему району к зданию УВД. - 30 минут с докладом каждые 10 минут.</li>
+                    <li>Отстоять на посту "Балларды" или "Ворота задние или передние" - 30 минут с докладом каждые 10 минут.</li>
+                    <li>Сдать практический экзамен на тему "Задержание, арест и штрафы".</li>
+                    <li>Сдать итоговый экзамен.</li>
                 </ul>
             </div>
         </div>
@@ -521,6 +542,13 @@
     // Функция для переключения вкладок
     function openTab(evt, tabName) {
         let i, tabcontent, tablinks;
+        let welcomeScreen = document.getElementById('WelcomeScreen');
+
+        // Скрыть стартовый экран, если он активен
+        if (welcomeScreen.classList.contains('active')) {
+            welcomeScreen.style.display = 'none';
+            welcomeScreen.classList.remove('active');
+        }
 
         // Скрыть весь контент
         tabcontent = document.getElementsByClassName("tab-content");
@@ -540,8 +568,11 @@
         
         // Сбросить поле поиска и применить фильтр при переключении на Законодательную Базу
         if (tabName === 'Legislative') {
-            document.getElementById('searchInput').value = '';
-            filterLaws();
+            let searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                 searchInput.value = '';
+                 filterLaws();
+            }
         }
     }
 
@@ -560,10 +591,19 @@
         }
     }
 
-    // Показать вкладку "Законодательная База" при первой загрузке
+    // Показать стартовый экран при загрузке
     document.addEventListener("DOMContentLoaded", function() {
-        // Убедимся, что по умолчанию активна первая вкладка
-        document.getElementsByClassName('tab-button')[0].click();
+        // Убедимся, что стартовый экран активен и видим, а контент скрыт
+        let welcomeScreen = document.getElementById('WelcomeScreen');
+        if (welcomeScreen) {
+            welcomeScreen.style.display = 'flex';
+            welcomeScreen.classList.add('active');
+        }
+        
+        let tabcontent = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
     });
 </script>
 
