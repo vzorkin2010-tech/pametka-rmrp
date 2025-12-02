@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Законодательная База | GTA 5 RP</title>
+    <title>Законодательная База (Compact) | GTA 5 RP</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -14,6 +14,10 @@
             --accent-blue: #3b82f6;
             --accent-green: #10b981;
             --border-color: #334155;
+            /* Компактные размеры */
+            --font-size-base: 13px;
+            --font-size-badge: 11px;
+            --card-padding: 8px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
@@ -21,120 +25,135 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            padding: 20px;
-            line-height: 1.5;
+            padding: 10px;
+            line-height: 1.3;
+            font-size: var(--font-size-base);
         }
 
         /* Header & Search */
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
         
-        h1 { margin-bottom: 10px; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 2px; }
+        h1 { 
+            font-size: 1.4rem; 
+            margin-bottom: 5px; 
+            color: var(--accent-blue); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
         
         .search-container {
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
-            position: relative;
         }
 
         input#searchInput {
             width: 100%;
-            padding: 15px;
-            border-radius: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
             border: 1px solid var(--border-color);
             background: var(--card-bg);
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             outline: none;
             transition: 0.3s;
         }
 
-        input#searchInput:focus { border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
+        input#searchInput:focus { border-color: var(--accent-blue); box-shadow: 0 0 10px rgba(59, 130, 246, 0.3); }
 
         /* Grid Layout */
         .main-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
-            max-width: 1600px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 10px;
+            max-width: 1800px;
             margin: 0 auto;
         }
 
         .column {
-            background: rgba(30, 41, 59, 0.5);
-            border-radius: 16px;
-            padding: 15px;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 10px;
+            padding: 10px;
             border: 1px solid var(--border-color);
+            height: fit-content;
         }
 
         .column-title {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
             text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
             border-bottom: 2px solid var(--accent-blue);
             color: var(--accent-blue);
+            text-transform: uppercase;
         }
 
-        /* Cards Styles */
+        /* Cards Styles - Compact */
         .law-card {
             background: var(--card-bg);
-            margin-bottom: 12px;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-blue);
+            margin-bottom: 6px;
+            padding: var(--card-padding);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-blue);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: transform 0.2s;
+            transition: background 0.2s;
         }
 
-        .law-card:hover { transform: translateX(5px); background: #263345; }
+        .law-card:hover { background: #263345; }
 
-        .law-info { flex: 1; padding-right: 10px; }
-        .law-number { font-weight: bold; color: var(--accent-blue); margin-right: 8px; font-size: 1.1em; }
-        .law-desc { color: var(--text-main); font-size: 0.95em; }
+        .law-info { flex: 1; padding-right: 8px; display: flex; align-items: baseline; }
+        .law-number { font-weight: bold; color: var(--accent-blue); margin-right: 6px; font-size: 1.05em; white-space: nowrap; }
+        .law-desc { color: var(--text-main); font-size: 1em; }
 
         .punishment-badge {
-            background: rgba(239, 68, 68, 0.2);
+            background: rgba(239, 68, 68, 0.15);
             color: var(--accent-red);
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 0.85em;
+            padding: 4px 6px;
+            border-radius: 4px;
+            font-size: var(--font-size-badge);
             font-weight: bold;
             white-space: nowrap;
             text-align: right;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            min-width: 80px;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            min-width: 60px;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
             justify-content: center;
+            line-height: 1.1;
         }
-
-        .punishment-badge span { display: block; }
 
         /* Administrative Specifics */
         .admin-card { border-left-color: var(--accent-green); }
-        .admin-badge { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.3); }
+        .admin-badge { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.2); }
 
-        /* Procedural Text Blocks */
+        /* Procedural Text Blocks - Compact */
         .proc-block {
             background: var(--card-bg);
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            border-top: 3px solid #8b5cf6;
+            margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 6px;
+            border-top: 2px solid #8b5cf6;
         }
-        .proc-title { font-weight: bold; color: #a78bfa; margin-bottom: 8px; display: block; }
-        .proc-list { list-style: none; padding-left: 5px; }
-        .proc-list li { margin-bottom: 6px; font-size: 0.9em; color: var(--text-muted); position: relative; padding-left: 15px; }
-        .proc-list li::before { content: "•"; color: #8b5cf6; position: absolute; left: 0; }
+        .proc-title { font-weight: bold; color: #a78bfa; margin-bottom: 4px; display: block; font-size: 0.95em; }
+        .proc-list { list-style: none; padding-left: 2px; }
+        .proc-list li { margin-bottom: 2px; font-size: 0.9em; color: var(--text-muted); position: relative; padding-left: 10px; }
+        .proc-list li::before { content: "•"; color: #8b5cf6; position: absolute; left: 0; font-size: 1.2em; line-height: 1; top: 1px; }
 
-        /* Responsive */
+        .misc-note {
+            font-size: 0.85em;
+            color: #64748b;
+            font-style: italic;
+            margin-bottom: 4px;
+            padding-left: 5px;
+            border-left: 2px solid #475569;
+        }
+
         @media (max-width: 768px) {
             .main-grid { grid-template-columns: 1fr; }
         }
@@ -145,9 +164,8 @@
 <header>
     <h1>Законодательная База</h1>
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Поиск статьи, названия или наказания..." onkeyup="filterLaws()">
+        <input type="text" id="searchInput" placeholder="Поиск (номер, название, наказание)..." onkeyup="filterLaws()">
     </div>
-    <div style="margin-top: 10px; font-size: 0.8em; color: #64748b;">Редакция: 24.05.2025</div>
 </header>
 
 <div class="main-grid">
@@ -155,158 +173,116 @@
     <div class="column">
         <div class="column-title">Уголовный Кодекс</div>
         <div id="criminal-list">
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">37.1</span><span class="law-desc">Убийство</span></div>
-                <div class="punishment-badge">7 лет</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">37.2</span><span class="law-desc">Убийство двух или более лиц</span></div>
-                <div class="punishment-badge">8 лет</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">38.1</span><span class="law-desc">Причинение тяжкого вреда здоровью</span></div>
-                <div class="punishment-badge">5 лет</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">38.2</span><span class="law-desc">Двух и более лиц (хулиганские побуждения)</span></div>
-                <div class="punishment-badge">7 лет</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">39</span><span class="law-desc">Угроза убийством / тяжким вредом</span></div>
-                <div class="punishment-badge">4 года</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">41.1</span><span class="law-desc">Похищение человека</span></div>
-                <div class="punishment-badge">6 лет</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">43</span><span class="law-desc">Нарушение неприкосновенности жилища</span></div>
-                <div class="punishment-badge">20к | 3 года</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">44</span><span class="law-desc">Кража</span></div>
-                <div class="punishment-badge">30к | 3 года</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">46.1</span><span class="law-desc">Грабеж</span></div>
-                <div class="punishment-badge">4 года</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">47.1</span><span class="law-desc">Разбой</span></div>
-                <div class="punishment-badge">5 лет</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">48</span><span class="law-desc">Уничтожение или повреждение имущества</span></div>
-                <div class="punishment-badge">35к | 2 года</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">49.1</span><span class="law-desc">Угон ТС</span></div>
-                <div class="punishment-badge">35к | 2 года</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">49.2</span><span class="law-desc">Угон Гос. ТС</span></div>
-                <div class="punishment-badge">100к | 4 года</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">53</span><span class="law-desc">Террористический акт</span></div>
-                <div class="punishment-badge">8 лет</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">55</span><span class="law-desc">Захват заложника</span></div>
-                <div class="punishment-badge">7 лет</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">60</span><span class="law-desc">Незаконное оружие | Маты | Патроны</span></div>
-                <div class="punishment-badge">4 года</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">64</span><span class="law-desc">Наркотики</span></div>
-                <div class="punishment-badge">5 лет</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">76.1</span><span class="law-desc">Злоупотребление должностными</span></div>
-                <div class="punishment-badge">500к | 3 года</div>
-            </div>
-            <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">79</span><span class="law-desc">Получение или дача взятки</span></div>
-                <div class="punishment-badge">8 лет</div>
-            </div>
-             <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">91</span><span class="law-desc">Оскорбление представителя власти</span></div>
-                <div class="punishment-badge">30к | 3 года</div>
-            </div>
-             <div class="law-card search-item">
-                <div class="law-info"><span class="law-number">93</span><span class="law-desc">Помеха деятельности сотрудника</span></div>
-                <div class="punishment-badge">25к | 3 года</div>
-            </div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">37.1</span><span class="law-desc">Убийство</span></div><div class="punishment-badge">7 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">37.2</span><span class="law-desc">Убийство двух или более лиц</span></div><div class="punishment-badge">8 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">38.1</span><span class="law-desc">Причинение тяжкого вреда здоровью</span></div><div class="punishment-badge">5 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">38.2</span><span class="law-desc">Вред 2+ лиц | Хулиганские побуждения</span></div><div class="punishment-badge">7 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">39</span><span class="law-desc">Угроза убийством или тяжким вредом</span></div><div class="punishment-badge">4 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">41.1</span><span class="law-desc">Похищение человека</span></div><div class="punishment-badge">6 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">41.2</span><span class="law-desc">а)группой б)секс.насил в)оружие г)2+ лиц</span></div><div class="punishment-badge">6 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">43</span><span class="law-desc">Нарушение неприкосновенности жилища</span></div><div class="punishment-badge">20к | 3 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">44</span><span class="law-desc">Кража</span></div><div class="punishment-badge">30к | 3 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">46.1</span><span class="law-desc">Грабеж</span></div><div class="punishment-badge">4 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">46.2</span><span class="law-desc">а)группой б)незакон.проникн в)склад</span></div><div class="punishment-badge">5 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">47.1</span><span class="law-desc">Разбой</span></div><div class="punishment-badge">5 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">47.2</span><span class="law-desc">Группой лиц | 47.3 а)2+ лиц б)тяжкий вред</span></div><div class="punishment-badge">6 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">48</span><span class="law-desc">Уничтожение/повреждение имущ.</span></div><div class="punishment-badge">35к | 2 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">48.1</span><span class="law-desc">Порча государственного имущества</span></div><div class="punishment-badge">50к | 3 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">49.1</span><span class="law-desc">Угон ТС</span></div><div class="punishment-badge">35к | 2 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">49.2</span><span class="law-desc">Угон Гос.ТС</span></div><div class="punishment-badge">100к | 4 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">53</span><span class="law-desc">Террористический акт</span></div><div class="punishment-badge">8 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">55</span><span class="law-desc">Захват заложника</span></div><div class="punishment-badge">7 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">56</span><span class="law-desc">Заведомо ложное сообщение о теракте</span></div><div class="punishment-badge">6 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">59</span><span class="law-desc">Угон воздушного/водного транспорта</span></div><div class="punishment-badge">5 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">61</span><span class="law-desc">Хулиганство а)оружие/угрозы</span></div><div class="punishment-badge">20к | 3 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">62.1</span><span class="law-desc">Незаконное проникновение на закрытый объект</span></div><div class="punishment-badge">40к | 4 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">63.1</span><span class="law-desc">Незаконное оружие | Маты | Патроны</span></div><div class="punishment-badge">4 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">63.2</span><span class="law-desc">Незаконные бронежилеты 3 и 4 класса</span></div><div class="punishment-badge">4 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">63.3</span><span class="law-desc">Ношение огнестрела в открытом виде</span></div><div class="punishment-badge">5 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">63.4</span><span class="law-desc">Причинение вреда здоровью оружием</span></div><div class="punishment-badge">6 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">64</span><span class="law-desc">Наркотики</span></div><div class="punishment-badge">5 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">67.1</span><span class="law-desc">Отказ от штрафа до 30.000р</span></div><div class="punishment-badge">3 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">67.2</span><span class="law-desc">Отказ от штрафа от 30.000р до 50.000р</span></div><div class="punishment-badge">5 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">67.3</span><span class="law-desc">Отказ от штрафа от 50.000 и более</span></div><div class="punishment-badge">6 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">74</span><span class="law-desc">Разглашение гостайны</span></div><div class="punishment-badge">4 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">76.1</span><span class="law-desc">Злоупотребление должностными</span></div><div class="punishment-badge">500к|3 г</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">77.1</span><span class="law-desc">Превышение должностных полномочий</span></div><div class="punishment-badge">500к|3 г</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">78</span><span class="law-desc">Неисполнение приказа</span></div><div class="punishment-badge">100к|3 г</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">79</span><span class="law-desc">Получение или дача взятки</span></div><div class="punishment-badge">8 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">80.1</span><span class="law-desc">Халатность</span></div><div class="punishment-badge">200к|2 г</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">86</span><span class="law-desc">Заведомо ложный донос</span></div><div class="punishment-badge">30к | 4 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">87</span><span class="law-desc">Побег из под стражи/ареста</span></div><div class="punishment-badge">8 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">89</span><span class="law-desc">Посягательство на жизнь сотрудника</span></div><div class="punishment-badge">6 лет</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">90.1</span><span class="law-desc">Применение насилия к представителю власти</span></div><div class="punishment-badge">4 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">91</span><span class="law-desc">Оскорбление представителя власти</span></div><div class="punishment-badge">30к | 3 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">93</span><span class="law-desc">Помеха деятельности сотрудника</span></div><div class="punishment-badge">25к | 3 года</div></div>
+            <div class="law-card search-item"><div class="law-info"><span class="law-number">94</span><span class="law-desc">Присвоение полномочий должн. лица</span></div><div class="punishment-badge">350к | 6 лет</div></div>
         </div>
     </div>
 
     <div class="column">
         <div class="column-title">Административный Кодекс</div>
         <div id="admin-list">
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">5.2</span><span class="law-desc">Оскорбление</span></div>
-                <div class="punishment-badge admin-badge">10к - 20к</div>
-            </div>
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">5.3</span><span class="law-desc">Дискриминация</span></div>
-                <div class="punishment-badge admin-badge">5к - 15к</div>
-            </div>
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">6.1</span><span class="law-desc">Воспрепятствование мед. помощи</span></div>
-                <div class="punishment-badge admin-badge">10к - 15к</div>
-            </div>
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">7.1</span><span class="law-desc">Проникновение на частную территорию</span></div>
-                <div class="punishment-badge admin-badge">10к - 20к</div>
-            </div>
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">7.2</span><span class="law-desc">Взлом</span></div>
-                <div class="punishment-badge admin-badge">2 года</div>
-            </div>
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">7.3</span><span class="law-desc">Попытка угона ТС</span></div>
-                <div class="punishment-badge admin-badge">10к - 20к<span>2 года</span></div>
-            </div>
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">8.1</span><span class="law-desc">Мелкое хулиганство</span></div>
-                <div class="punishment-badge admin-badge">10к - 30к<span>1 год</span></div>
-            </div>
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">8.2</span><span class="law-desc">Побои</span></div>
-                <div class="punishment-badge admin-badge">20к - 35к<span>1 год</span></div>
-            </div>
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">8.3</span><span class="law-desc">Алкоголь в общественных местах</span></div>
-                <div class="punishment-badge admin-badge">5к - 15к</div>
-            </div>
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">8.5</span><span class="law-desc">Заведомо ложный вызов</span></div>
-                <div class="punishment-badge admin-badge">10к - 20к</div>
-            </div>
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">8.8</span><span class="law-desc">Клевета</span></div>
-                <div class="punishment-badge admin-badge">10к - 20к</div>
-            </div>
-            <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">8.12</span><span class="law-desc">Ношение масок в общ. месте</span></div>
-                <div class="punishment-badge admin-badge">10к - 15к</div>
-            </div>
-             <div class="law-card admin-card search-item">
-                <div class="law-info"><span class="law-number">8.13</span><span class="law-desc">Открытое ношение холодного оружия</span></div>
-                <div class="punishment-badge admin-badge">15к - 20к</div>
-            </div>
-            
-            <div class="proc-block search-item">
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">5.2</span><span class="law-desc">Оскорбление</span></div><div class="punishment-badge admin-badge">10к - 20к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">5.3</span><span class="law-desc">Дискриминация</span></div><div class="punishment-badge admin-badge">5к - 15к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">6.1</span><span class="law-desc">Воспрепятств. мед. помощи</span></div><div class="punishment-badge admin-badge">10к - 15к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">6.3</span><span class="law-desc">Неоказание мед. помощи</span></div><div class="punishment-badge admin-badge">10к - 15к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">7.1</span><span class="law-desc">Проникновение на частную территорию</span></div><div class="punishment-badge admin-badge">10к - 20к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">7.2</span><span class="law-desc">Взлом</span></div><div class="punishment-badge admin-badge">2 года</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">7.3</span><span class="law-desc">Попытка угона ТС</span></div><div class="punishment-badge admin-badge">10к-20к<span>2 года</span></div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">7.4</span><span class="law-desc">Браконьерство</span></div><div class="punishment-badge admin-badge">20к - 30к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">8.1</span><span class="law-desc">Мелкое хулиганство</span></div><div class="punishment-badge admin-badge">10к-30к<span>1 год</span></div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">8.2</span><span class="law-desc">Побои</span></div><div class="punishment-badge admin-badge">20к-35к<span>1 год</span></div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">8.3</span><span class="law-desc">Алкоголь в общ. местах</span></div><div class="punishment-badge admin-badge">5к - 15к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">8.4</span><span class="law-desc">Попрошайничество</span></div><div class="punishment-badge admin-badge">5к - 15к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">8.5</span><span class="law-desc">Заведомо ложный вызов</span></div><div class="punishment-badge admin-badge">10к - 20к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">8.6</span><span class="law-desc">Организ. незакон. митинга</span></div><div class="punishment-badge admin-badge">20к-30к<span>2 года</span></div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">8.7</span><span class="law-desc">Неповиновение закон. распоряжению</span></div><div class="punishment-badge admin-badge">15к-30к<span>2 года</span></div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">8.8</span><span class="law-desc">Клевета</span></div><div class="punishment-badge admin-badge">10к - 20к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">8.12</span><span class="law-desc">Маска в общ. месте (скрывающая)</span></div><div class="punishment-badge admin-badge">10к - 15к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">8.13</span><span class="law-desc">Открытое ношение холодного оружия</span></div><div class="punishment-badge admin-badge">15к - 20к</div></div>
+            <div class="law-card admin-card search-item"><div class="law-info"><span class="law-number">8.14</span><span class="law-desc">Курение в общ. месте</span></div><div class="punishment-badge admin-badge">5к - 10к</div></div>
+
+            <div class="proc-block search-item" style="margin-top:15px;">
                 <span class="proc-title">ФЗоП 11.1 Права полиции</span>
                 <ul class="proc-list">
                     <li>Требовать прекращения противоправных действий</li>
                     <li>Проверка паспорта и документов</li>
-                    <li>Останавливать ТС для проверки</li>
+                    <li>Останавливать ТС для проверки документов</li>
                     <li>Требовать покинуть место преступления</li>
                     <li>Требовать разойтись при нарушении порядка</li>
                 </ul>
+            </div>
+            
+             <div class="proc-block search-item">
+                <span class="proc-title">ПК 20.2 Обыск ТС</span>
+                <ul class="proc-list">
+                    <li>а) В зоне ЧП | ВП | КТО</li>
+                    <li>б) В случае нарушения правил</li>
+                    <li>в) Наличие ТС в зоне преступления</li>
+                    <li>е) Проезд на охраняемую территорию</li>
+                </ul>
+            </div>
+            
+            <div class="proc-block search-item" style="background: rgba(0,0,0,0.2); border-color: #475569;">
+                <div class="misc-note">1. Адвокат несёт только рекомендательный характер</div>
+                <div class="misc-note">2. К ОМОНУ/СПЕЦНАЗУ/ГРОМу/ФСБ А обращаемся только по послед. 2 цифрам id</div>
+                <div class="misc-note">3. ФЗоГСЗОтСтатья 15. Территории органов МВД</div>
+                <div class="misc-note">4. Озвучиваем права задержанного только по запросу</div>
+                
+                 <div class="proc-block search-item" style="margin-top:10px; border-top-color: #eab308;">
+                    <span class="proc-title" style="color: #facc15;">ПК 11.1 Допуск на место проц. действий</span>
+                    <ul class="proc-list">
+                        <li>а) Сотрудник, проводящий действия</li>
+                        <li>б) Задерживаемый</li>
+                        <li>в) Один адвокат</li>
+                        <li>г) Не более 1 предст. прокуратуры</li>
+                        <li>д) Не более 1 предст. СК России</li>
+                        <li>ж) Предст. руководства организации</li>
+                        <li>з) Не более 1 предст. УСБ ФСБ</li>
+                        <li>и) Сотрудник, передавший задержание</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -314,69 +290,61 @@
     <div class="column">
         <div class="column-title">Процессуальный Кодекс</div>
         <div id="proc-list">
-            
             <div class="proc-block search-item">
                 <span class="proc-title">7.1 Основания для задержания</span>
                 <ul class="proc-list">
-                    <li>Лицо застигнуто при совершении или после</li>
-                    <li>Очевидцы (3+ чел) укажут на лицо</li>
-                    <li>На лице или одежде явные следы</li>
-                    <li>Для установления личности (если скрывает лицо)</li>
-                    <li>Наличие лица в розыске</li>
-                    <li>Ориентировка на лицо/ТС</li>
+                    <li>а) Лицо застигнуто при совершении или после</li>
+                    <li>б) Очевидцы (3+ чел) укажут на лицо</li>
+                    <li>в) На лице или одежде явные следы</li>
+                    <li>г) Для установления личности (если скрывает)</li>
+                    <li>ж) Наличие лица в розыске</li>
+                    <li>н) Ориентировка на лицо/ТС</li>
                 </ul>
             </div>
 
             <div class="proc-block search-item">
                 <span class="proc-title">8.1 Права задержанного</span>
                 <ul class="proc-list">
-                    <li>Не свидетельствовать против себя</li>
-                    <li>Требовать адвоката (гос. или частного)</li>
-                    <li>Консультация с адвокатом (до 5 мин)</li>
-                    <li>Один телефонный звонок (до 2 мин)</li>
+                    <li>а) Не свидетельствовать против себя</li>
+                    <li>б) Требовать предоставления адвоката</li>
+                    <li>в) Требовать присутствия адвоката (гос.)</li>
+                    <li>г) Консультация с адвокатом (до 5 мин)</li>
+                    <li>д) Один тел. звонок (до 2 мин)</li>
                 </ul>
             </div>
 
             <div class="proc-block search-item">
                 <span class="proc-title">10.1 Порядок задержания</span>
                 <ul class="proc-list">
-                    <li>Применить спец. средства (наручники)</li>
-                    <li>Представиться, показать жетон/удостоверение</li>
-                    <li>Огласить статьи нарушения</li>
-                    <li>Произвести личный обыск</li>
-                    <li>Доставить в участок</li>
+                    <li>а) Применить спец. средства (наручники)</li>
+                    <li>б) Представиться, показать жетон</li>
+                    <li>в) Огласить статьи нарушения</li>
+                    <li>г) Произвести личный обыск</li>
+                    <li>д) Доставить в участок</li>
                 </ul>
             </div>
 
             <div class="proc-block search-item">
                 <span class="proc-title">18.2 Порядок ареста</span>
                 <ul class="proc-list">
-                    <li>Уведомить о начале стадии ареста</li>
-                    <li>Разъяснить причину</li>
-                    <li>Обыск с конфискацией нелегала</li>
-                    <li>Произвести арест (КПЗ)</li>
+                    <li>а) Уведомить о начале стадии ареста, разъяснить причину</li>
+                    <li>б) Личный обыск с конфискацией нелегала</li>
+                    <li>в) Произвести арест лица</li>
                 </ul>
             </div>
 
             <div class="proc-block search-item">
-                <span class="proc-title">14.1 Основания для освобождения</span>
+                <span class="proc-title">14.1 Основания для окончания задержания</span>
                 <ul class="proc-list">
-                    <li>Недостаточно доказательств</li>
-                    <li>Нет наказания в виде лишения свободы</li>
-                    <li>Истек срок (60 мин)</li>
-                </ul>
-            </div>
-
-             <div class="proc-block search-item">
-                <span class="proc-title">ПК 20.2 Обыск ТС</span>
-                <ul class="proc-list">
-                    <li>В зоне ЧП / ВП / КТО</li>
-                    <li>При нарушении правил</li>
-                    <li>Если ТС в зоне совершения преступления</li>
-                    <li>Проезд на охраняемую территорию</li>
+                    <li>а) Недостаточно доказательств</li>
+                    <li>б) Не предусмотрено лишения свободы</li>
+                    <li>в) Истек срок (60 мин)</li>
                 </ul>
             </div>
             
+            <div style="margin-top: 20px; text-align: right; color: #64748b; font-size: 0.8em;">
+                Редакция: 24.05.2025
+            </div>
         </div>
     </div>
 
